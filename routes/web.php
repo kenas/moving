@@ -7,7 +7,7 @@ Auth::routes();
 Route::get('/', function () {
     
     $articles = Article::where('publish', '=', 1)->orderBy('created_at', 'DESC')->paginate(3);
-    //$articles->withPath('custom/url');
+    $articles->withPath('custom/url');
 
     return view('welcome', compact('articles'));
 });
