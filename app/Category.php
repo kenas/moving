@@ -11,4 +11,10 @@ class Category extends Model
     {
     	return $this->HasMany('App\Article');
     }
+
+    //return slug of the category
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
 }

@@ -2,18 +2,60 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
+use App\Category;
+
 use Illuminate\Http\Request;
+//use Symfony\Component\HttpFoundation\Exception\HttpException;
 
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => 'allCategoryForDashboard']);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($slug)
     {
-        //
+
+        $category = Category::where('name', $slug)->firstOrFail();
+
+        //dd($category->name);
+        $categories = Category::orderBy('name', 'ASC')->get();
+
+        $articles = Article::where('category_id',  '=', $category->id)
+            ->where('publish', 1)
+            ->orderBy('created_at', 'DESC')
+            ->simplePaginate(3);
+            
+        $title = $category->name;
+
+        
+        return view('pages.category', compact('articles', 'categories', 'title'));
+  
+    }
+
+    public function getAllCategories () {
+
+        $getAllCategories = Category::all();
+
+        //dd($getAllCategories);
+        return view('navbar.navbar', compact('getAllCategories'));
+    }
+
+
+    public function allCategoryForDashboard() {
+
+        $categories = Category::all();
+
+        //return response()->json($categories);
+        return view('manage.categories.index', compact('categories'));
     }
 
     /**
@@ -45,7 +87,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

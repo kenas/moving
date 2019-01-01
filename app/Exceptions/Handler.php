@@ -14,6 +14,7 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         //
+
     ];
 
     /**
@@ -47,7 +48,10 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
-    {
+    {   
+
+        //dd($exception);
+
         return parent::render($request, $exception);
     }
 }

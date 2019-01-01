@@ -11,12 +11,12 @@ class CreateTableCategory extends Migration
      */
     public function up()
     {
-        Schema::create('category', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->softDeletesTz();
-            $table->timestamps();
-        });
+        // Schema::create('category', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('name');
+        //     $table->softDeletesTz();
+        //     $table->timestamps();
+        // });
     }
     /**
      * Reverse the migrations.
