@@ -16,13 +16,20 @@
             @{{confirmDeleteMessage.message}}
         </div>
 
+        <div class="notification is-warning" v-if="searchResult.errorMessage">
+            @{{searchResult}}
+        </div>
+
 
         <div class="columns">
             <div class="column">
                 <div class="field">
                   <div class="control">
                     <input class="input is-medium" type="text" placeholder="Hleat clanek" @keyup.enter="searchit" v-model="search">
-                    <p v-for="result in searchResult"><a v-bind:href="result.link">@{{result.title}}</a></p>
+                    <p v-for="result in searchResult">
+                        <a v-bind:href="result.link">@{{result.title}}</a>
+                    </p>
+
                   </div>
                 </div>
                 <table class="table">
@@ -146,6 +153,7 @@
           confirmDeleteMessage: '',
           search: '',
           searchResult: '',
+          test: '',
 
         },
 
@@ -281,10 +289,36 @@
 
           buildLinkForResult: function() {
 
+            //const hostName =  window.location.hostname;
+
+           if(this.checkObjectEmptyOrNot()){
+                this.confirmDeleteMessage.push({
+                    errorMessage: 'Clanek nebyl nalezen v databazy'
+                });
+           }
+
             for(let i = 0; i< this.searchResult.length; i++){
-                this.searchResult[i].link = 'http://127.0.0.1:8000/article/'+this.searchResult[i].id +'/edit';
+                console.log(this.searchResult[i]);
+                if(this.searchResult[i].id >=1){
+                    this.searchResult[i].link = '/article/'+this.searchResult[i].id +'/edit';           
+                }
             }
+            this.search = "";
+          },
+
+
+          checkObjectEmptyOrNot: function () {
+
+                for(var key in this.searchResult) {
+                    if (this.searchResult.hasOwnProperty(key)) {
+                        return false;
+                    }
+                }
+
+                return true;
+
           }
+          
         },
 
         watch: {
