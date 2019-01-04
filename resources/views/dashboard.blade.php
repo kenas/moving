@@ -17,7 +17,7 @@
         </div>
 
         <div class="notification is-warning" v-if="searchResult.errorMessage">
-            @{{searchResult}}
+            @{{searchResult.errorMessage}}
         </div>
 
 
@@ -292,13 +292,12 @@
             //const hostName =  window.location.hostname;
 
            if(this.checkObjectEmptyOrNot()){
-                this.confirmDeleteMessage.push({
-                    errorMessage: 'Clanek nebyl nalezen v databazy'
-                });
+                this.searchResult.errorMessage = 'Clanek nebyl nalezen v databazy';
+                
            }
 
             for(let i = 0; i< this.searchResult.length; i++){
-                console.log(this.searchResult[i]);
+
                 if(this.searchResult[i].id >=1){
                     this.searchResult[i].link = '/article/'+this.searchResult[i].id +'/edit';           
                 }
