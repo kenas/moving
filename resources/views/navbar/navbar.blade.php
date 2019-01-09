@@ -49,7 +49,7 @@
         <a class="nav-link" href="#">Doporučuje</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Kontakt</a>
+        <a class="nav-link" href="/kontakt">Kontakt</a>
       </li>
     </ul>
   </div>
