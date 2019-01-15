@@ -49,7 +49,7 @@
         <a class="nav-link" href="#">Doporučuje</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/kontakt">Kontakt</a>
+        <a class="nav-link" href="{{route('getEmail')}}">Kontakt</a>
       </li>
     </ul>
   </div>

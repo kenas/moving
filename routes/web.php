@@ -24,7 +24,6 @@ Route::get('kategorie', 'CategoryController@getAllCategories')->name('categories
 Route::get('/kategorie/{slug}', 'CategoryController@index')->name('category.index');
 Route::get('/kategorie/{category}/clanek/{slug}', 'ArticlesController@show')->name('articles.show');
 Route::get('/tag/{tag}', 'TagController@index')->name('tag.index');
-Route::get('/kontakt', function() {
-	return view('pages.kontakt');
-});
+Route::get('/kontakt', 'ContactFormController@getEmail')->name('getEmail');
+Route::post('/kontakt', 'ContactFormController@sendEmail')->name('sendEmail');
 

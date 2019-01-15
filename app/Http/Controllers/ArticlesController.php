@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use Symfony\Component\HttpFoundation\Exception\HttpException;
+use Symfony\Component\HttpFoundation\Exception\HttpException;
 
 
 use App\Article;
@@ -11,11 +11,11 @@ use App\Category;
 use Session;
 use Image;
 use App\Tag;
+use App\Mail\sendContactForm;
 
 
 class ArticlesController extends Controller
 {
-
 
     /**
      * Show the form for creating a new resource.
@@ -93,7 +93,6 @@ class ArticlesController extends Controller
         return view('pages.article', compact('articles', 'categories'));
     }
 
- 
     /**
      * Remove the specified resource from storage.
      *
