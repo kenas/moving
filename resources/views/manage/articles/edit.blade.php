@@ -28,7 +28,8 @@
 			<div class="field">
 				<div class="control">
 					<label>
-						{{ Form::file('coverImage', ['class' => 'file-input'])}}
+						<input type="file" name="coverImage">
+						{{-- {{ Form::file('coverImage', ['class' => 'file-input'])}}
 							<span class="file-cta">
 						      	<span class="file-icon">
 						        	<i class="fas fa-upload"></i>
@@ -36,7 +37,7 @@
 						      	<span class="file-label">
 						        	Choose a file…
 						      	</span>
-						    </span>
+						    </span> --}}
 					</label>
 				</div>
 			</div>

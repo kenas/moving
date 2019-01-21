@@ -27,13 +27,6 @@ class ContactFormController extends Controller
 
 
         Mail::to('test@test.cz')->send(new sendContactForm($data));
-        // Mail::send('pages.sendFormContact', $data, function($message) use ($data) {
-        //     $message->from($data['email']);
-        //     $message->to('VladimirHavrda@seznam.cz');
-        //     $message->subject($data['subject']);
-        // });
-
-
     }
  
 }

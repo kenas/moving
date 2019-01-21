@@ -44,6 +44,7 @@ class CategoryController extends Controller
     public function getAllCategories () {
 
         $getAllCategories = Category::all();
+       
 
         //dd($getAllCategories);
         return view('navbar.navbar', compact('getAllCategories'));
@@ -52,8 +53,8 @@ class CategoryController extends Controller
 
     public function allCategoryForDashboard() {
 
-        $categories = Category::all();
-
+        //$categories = Category::all();
+        $categories = Category::orderBy('created_at', 'DESC')->paginate(7);
         //return response()->json($categories);
         return view('manage.categories.index', compact('categories'));
     }
@@ -76,7 +77,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->category);
+        $validateData = $request->validate([
+
+            'category' => 'required'
+        ]);
+
+        $newCategory = new Category;
+
+        $newCategory->name = $request->category;
+        $newCategory->save();
+
+        return back();
     }
 
     /**

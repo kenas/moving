@@ -43,21 +43,21 @@
 	<div class="row">
 	
 	@if($articles)
+
 		@foreach($articles as $article)
-			<div class="col-md-2 col-lg-2">
-				@if($article->cover_picture)
-					<img src="{{asset('images/'.$article->cover_picture)}}" class="img-fluid rounded">
-				@endif
-			</div>
-			<div class="col-12 col-sm-12 col-md-9 col-lg-9 mb-3">
+
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="pt-4"></div>
+				@if($article->cover_picture)
+					<img src="{{asset('images/'.$article->cover_picture)}}" class="img-fluid rounded float-left" style="padding: 10px;">
+				@endif
 				<h1><a href="{{ route('articles.show', ['kategorie' => strtolower($article->category->name), 'clanek' => $article->slug])}}">{{$article->title}}</a></h1>
 				<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($article->created_at))}} | {{$article->created_at->diffForHumans()}} | {{$article->author}} | Kategorie </small> <a href="{{ route('category.index', strtolower($article->category->name))}}"><span class="badge badge badge-info">{{$article->category->name}}</span></a>
 				<p>{!!str_limit($article->content, 300)!!}</p>
 
 				
 				@if(!$article->tags->isEmpty())
-					<p>
+					<p class="float-right">
 						<span class="text-muted">Tags:</span>
 						@foreach($article->tags as $tag)
 							<a href="{{route('tag.index', strtolower($tag->name))}}" class="badge badge-secondary">{{$tag->name}}</a>

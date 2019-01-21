@@ -3,7 +3,10 @@
 @section('content')
 
 <div class="container">
-
+	{!! Form::open(['route' => 'categories.store']) !!}
+		{{Form::text('category', null, ['class' => 'input is-medium', 'placeholder' => 'Nova kategorie?'])}}
+	{!! Form::close() !!}
+	<div class="mt-5"></div>
 	<table class="table is-fullwidth">
 		<thead>
 			<th>#</th>
@@ -20,7 +23,7 @@
 			@endforeach
 		</tbody>
 	</table>
-	
+	 {{$categories->links()}}
 </div>
 
 @endsection

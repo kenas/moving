@@ -25,14 +25,18 @@
 							<p>{!!str_limit($article->content, 300)!!}</p>
 
 								@if(!$article->tags->isEmpty())
-									<p>
-										<span class="text-muted">Tags:</span>
+									<p class="float-right">
+										@if($article->tags->count() > 1)
+											<span class="text-muted">Tags:</span>
+										@else
+											<span class="text-muted">Tag:</span>
+										@endif
 										@foreach($article->tags as $tag)
 											<a href="{{route('tag.index', strtolower($tag->name))}}" class="badge badge-secondary">{{$tag->name}}</a>
 										@endforeach
 									</p>
 								@endif
-							<hr>
+
 						</div>
 				@endforeach
 				</div>

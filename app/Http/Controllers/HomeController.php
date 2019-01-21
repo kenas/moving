@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
 
@@ -95,7 +95,7 @@ class HomeController extends Controller
      */
     public function updateArticle(Request $request, $id)
     {
-        //dd($request->tags);
+    
         $this->validate(request(), [
             'title'         => 'required|max:255',
             'category_id'   => 'required|numeric',

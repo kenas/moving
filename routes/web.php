@@ -18,6 +18,7 @@ Route::patch('/article/{id}', 'HomeController@updateArticle')->name('update.arti
 Route::get('/article/{id}/edit', 'HomeController@edit')->name('edit.article');
 Route::match(['put', 'delete'], 'article/{id}', 'HomeController@destroy')->name('article.destroy');
 Route::get('/dashboard/categories', 'CategoryController@allCategoryForDashboard')->name('dashboard.categories');
+Route::post('/dashboard/categories/store', 'CategoryController@store')->name('categories.store');
 Route::get('/search', 'HomeController@search');
 
 Route::get('kategorie', 'CategoryController@getAllCategories')->name('categoriesAll');
