@@ -30,6 +30,7 @@
 				
 				<div class="card-fluid">
 					@if($categories->articles->count() > 1)
+						<div class="mt-4"></div>
 						<h5>Mohlo by Vás také zajímat</h5>
 					@else
 

@@ -12,7 +12,7 @@
 	    <div class="carousel-item active">
 	      <img class="d-block w-100" src="{{asset('banners/children.jpg')}}" alt="First slide">
 	        <div class="carousel-caption d-none d-md-block">
-		    	<h2>Eurythmy Movement for healthy body, balanced soul, sound mind & social heart</h2>
+		    	<h2>Eurythmy pohyb pro zdrave telo, duse v rovnovaze, bdelost & soucit</h2>
 		  	</div>
 	    </div>
 	    <div class="carousel-item">

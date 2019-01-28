@@ -26,5 +26,5 @@ Route::get('/kategorie/{slug}', 'CategoryController@index')->name('category.inde
 Route::get('/kategorie/{category}/clanek/{slug}', 'ArticlesController@show')->name('articles.show');
 Route::get('/tag/{tag}', 'TagController@index')->name('tag.index');
 Route::get('/kontakt', 'ContactFormController@getEmail')->name('getEmail');
-Route::post('/kontakt', 'ContactFormController@sendEmail')->name('sendEmail');
+Route::post('/kontakt/send', 'ContactFormController@sendEmail')->name('sendEmail');
 
