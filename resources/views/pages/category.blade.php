@@ -3,7 +3,7 @@
 @section('head')
 	<link rel="next" href="{{$articles->nextPageUrl()}}">
 @endsection
-@section('title', 'Kategorie '. $title. ' | ')
+@section('title', 'Kategorie | '. $title. ' | ')
 
 @section('content')
 	
