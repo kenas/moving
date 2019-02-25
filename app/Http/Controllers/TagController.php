@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tag;
+use App\Article;
 use App\Category;
 
 class TagController extends Controller
@@ -15,12 +16,15 @@ class TagController extends Controller
      */
     public function index(Tag $tag)
     {
-       
-        $allTags = Tag::all();
-        $categories = Category::all();
+        $getArticleByTag = Tag::findOrfail($tag)->first();
+        $getNameOfTag = $getArticleByTag->name;
+        //dd($getTag->id);
+
+        // $find = Tag::findOrfail($tag);
+        // $allTags = Tag::all();
+        // $categories = Category::all();
         
-        //dd($categories);
-        return view('tags.index', compact('tag', 'allTags', 'categories'));
+        return view('tags.index', compact('getArticleByTag', 'getNameOfTag'));
     }
 
     /**
