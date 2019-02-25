@@ -5,10 +5,6 @@
 
 <div class="container pt-4">
 	<div class="row">
-{{-- {{ $getArticleByTag->articles }} --}}
-{{-- 	@foreach($getTag as $article)
-		{{ $article->title }}
-	@endforeach --}}
 
 			<div class="col-sm-9 col-md-9 col-lg-9">
 				@foreach($getArticleByTag->articles as $article)
@@ -19,10 +15,15 @@
 				@endforeach
 			</div>
 			<div class="col-sm-3 col-md-3 col-lg-3">
-				<h5>Vsechny tagy:</h5>
-{{-- 				@foreach($allTags as $tagname)
-					<a href="{{ route('tag.index', strtolower($tagname->name)) }}" class="badge badge-secondary">{{ $tagname->name }}</a>
-				@endforeach --}}
+				@if($allTags)
+					<h5>Vsechny tagy:</h5>
+						
+						@foreach($allTags as $tagname)
+							@if($tagname->articles->count())
+								<a href="{{ route('tag.index', strtolower($tagname->name)) }}" class="badge badge-secondary">{{ $tagname->name }}</a>
+							@endif
+						@endforeach
+				@endif
 			</div>
 
 	</div>

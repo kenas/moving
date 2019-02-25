@@ -20,11 +20,10 @@ class TagController extends Controller
         $getNameOfTag = $getArticleByTag->name;
         //dd($getTag->id);
 
-        // $find = Tag::findOrfail($tag);
-        // $allTags = Tag::all();
+        $allTags = Tag::all();
         // $categories = Category::all();
         
-        return view('tags.index', compact('getArticleByTag', 'getNameOfTag'));
+        return view('tags.index', compact('getArticleByTag', 'getNameOfTag', 'allTags'));
     }
 
     /**
