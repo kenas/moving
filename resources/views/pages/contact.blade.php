@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Kontakt | ')
+@section('title', 'Kontakt |')
 
 @section('content')
 

@@ -36,12 +36,9 @@ class EmailRequestValidation extends FormRequest
     {
         return [
             
-            'subject' => [
-                'required',
-                'min:5' => 'Predmet musi obsahovat alespon 5 znaku.'
-            ],
-            'email.required' => 'Uvedte email prosim',
-            'content.required' => 'Uvedte text prosim'
+            'subject.required' => 'Uvedte predmet, prosim',
+            'email.required' => 'Uvedte email, prosim',
+            'content.required' => 'Uvedte text, prosim'
         ];
     }
 }

@@ -4,6 +4,6 @@
 	<title></title>
 </head>
 <body>
-{{$data['content']}}
+	{{$data['content']}}
 </body>
 </html>
