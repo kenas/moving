@@ -25,7 +25,7 @@ class EmailRequestValidation extends FormRequest
     {
         return [
             
-            'subject' => 'required',
+            'subject' => 'required|min:5',
             'email' => 'required|email',
             'content' => 'required|min:10'
 
@@ -36,9 +36,11 @@ class EmailRequestValidation extends FormRequest
     {
         return [
             
-            'subject.required' => 'Uvedte predmet, prosim',
-            'email.required' => 'Uvedte email, prosim',
-            'content.required' => 'Uvedte text, prosim'
+            'subject.required' => 'Uvedte predmet prosim.',
+            'subject.min' => 'Vice obsahu v predmetu prosim.',
+            'email.required' => 'Uvedte email prosim.',
+            'content.min' => 'Vice obsahu je lepsi pro vyjadreni Vaseho nazoru nebo myslenky.',
+            'content.required' => 'Obsah nemuze byt prazdny.'
         ];
     }
 }
