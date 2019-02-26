@@ -21,8 +21,6 @@
 			</div>
 
 			<div class="col-sm-5 col-md-5 col-lg-5">
-
-				@include('messages.errors')
 				
 				<div class="form-group">
 
@@ -33,13 +31,22 @@
 					{{Form::text('subject', null, ['class' => 'form-control  form-control-lg'])}} --}}
 					<label for="subject"></label>
 					<input type="text" v-model="subject" name="subject" class="form-control form-control-lg {{$errors->has('subject') ? 'border-danger' : '' }} " value="{{ old('subject') }}" placeholder="Předmět">
+					@if($errors->has('subject'))
+						<p class="text-danger">{{ $errors->first('subject') }}</p>
+					@endif
 
 					<label for="email"></label>
-					<input type="email" v-model="email" name="email" class="form-control form-control-lg {{$errors->has('email') ? 'border-danger' : '' }}" value="{{ old('email') }}" placeholder="Email">
+					<input type="email" v-model="email" name="email" class="form-control form-control-lg {{$errors->has('email') ? 'border-danger' : '' }}" value="{{ old('email') }}" placeholder="E-mail">
+					@if($errors->has('email'))
+						<p class="text-danger">{{ $errors->first('email') }}</p>
+					@endif
 					{{-- {{ Form::label('email', 'Vas email', ['class' => 'control-label'])}}
 					{{Form::email('email', null, ['class' => 'form-control  form-control-lg', 'placeholder' => '@'])}} --}}
 					<label for="content"></label>
 					<textarea v-model="content" name="content" class="form-control form-control-lg {{$errors->has('content') ? 'border-danger' : '' }}" rows="8" placeholder="Zde napište vaši zprávu">{{ old('content') }}</textarea>
+					@if($errors->has('content'))
+						<p class="text-danger">{{ $errors->first('content') }}</p>
+					@endif
 					{{-- {{ Form::label('content', '', ['class' => 'control-label'])}}
 					{{Form::textarea('content', null, ['class' => 'form-control  form-control-lg', 'rows' => '8', 'placeholder' => 'Vas text ...'])}} --}}
 

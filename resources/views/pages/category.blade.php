@@ -21,7 +21,7 @@
 							@endif
 							<h1><a href="{{ route('articles.show', ['kategorie' => strtolower($article->category->name), 'clanek' => $article->slug])}}">{{$article->title}}</a></h1>
 							<a href="{{route('category.index', strtolower($article->category->name)) }}">{{-- <span class="badge badge badge-info">{{$article->category->name}}</span> --}}</a>
-							<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($article->created_at))}} | {{$article->created_at->diffForHumans()}} | {{$article->author}}</small>
+							<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($article->created_at))}} | {{$article->created_at->diffForHumans()}} | autor: {{$article->author}}</small>
 							<p>{!!str_limit($article->content, 300)!!}</p>
 
 								@if(!$article->tags->isEmpty())
