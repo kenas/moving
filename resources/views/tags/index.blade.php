@@ -12,7 +12,7 @@
 						<img src="{{ asset('images/'.$article->cover_picture) }}" alt="" class="img-fluid rounded float-left" style="padding: 10px;">
 					@endif
 					<h1><a href="{{ route('articles.show', ['kategorie' => strtolower($article->category->name), 'clanek' => $article->slug]) }}">{{ $article->title }}</a></h1>
-					<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($article->created_at))}} | {{$article->created_at->diffForHumans()}} | {{$article->author}}</small>
+					<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($article->created_at))}} | {{$article->created_at->diffForHumans()}} | autor: {{$article->author}} | kategorie <a href="{{ route('category.index', strtolower($article->category->name)) }}"><span class="badge badge-info">{{ $article->category->name }}</span></a></small>
 					<p>{!!str_limit($article->content, 300)!!}</p>
 
 				@endforeach

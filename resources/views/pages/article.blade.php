@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', $articles->category->name.' | '.$articles->title)
+@section('title', $articles->title.' | '.$articles->category->name.' |')
 
 @section('content')
 	
@@ -15,13 +15,14 @@
 
 			<article>
 				<h1>{{$articles->title}}</h1>
-				<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($articles->created_at))}} | {{$articles->created_at->diffForHumans()}} | {{$articles->author}}  | Kategorie </small><a href="{{ route('category.index', strtolower($articles->category->name))}}"><span class="badge badge badge-info">{{$articles->category->name}}</span></a>
+				<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($articles->created_at))}} | {{$articles->created_at->diffForHumans()}} | Kategorie </small><a href="{{ route('category.index', strtolower($articles->category->name))}}"><span class="badge badge badge-info">{{$articles->category->name}}</span></a>
 				<div class="pt-4"></div>
 				@if($articles->cover_picture) 
 					<img src="{{asset('images/'.$articles->cover_picture)}}"  class="img-fluid rounded" style="float: left; padding: 10px;">
 				@endif
 				<p>{!! $articles->content !!}</p>
-
+				
+				<p class="float-right"><small class="text-muted"><strong>Autor:</strong> {{$articles->author}}  </small></p>
 			</article>
 		</div>
 
