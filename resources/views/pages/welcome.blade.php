@@ -58,7 +58,11 @@
 				
 				@if(!$article->tags->isEmpty())
 					<p class="float-right">
-						<span class="text-muted">Tags:</span>
+						@if($article->tags->count() > 1)
+							<span class="text-muted">Tags:</span>
+						@else
+							<span class="text-muted">Tag:</span>
+						@endif
 						@foreach($article->tags as $tag)
 							<a href="{{route('tag.index', strtolower($tag->name))}}" class="badge badge-secondary">{{$tag->name}}</a>
 						@endforeach

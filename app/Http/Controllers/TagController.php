@@ -17,6 +17,8 @@ class TagController extends Controller
     public function index(Tag $tag)
     {
         $getArticleByTag = Tag::findOrfail($tag)->first();
+       
+        //$getArticleByTag->articles = Article::where('publish', '=', 1)->get();
         $getNameOfTag = $getArticleByTag->name;
         //dd($getTag->id);
 

@@ -49,7 +49,11 @@
 				    	
 					    		@if(!$articles->tags->isEmpty())
 					    			<div class="mt-5">
-						    			<h5>Tags:</h5>
+					    				@if($articles->tags->count() > 1)
+						    				<h5>Tags:</h5>
+						    			@else
+											<h5>Tag:</h5>
+						    			@endif
 										<p>
 											@foreach($articles->tags as $tag)
 												<a href="{{route('tag.index', strtolower($tag->name))}}" class="badge badge-secondary">{{$tag->name}}</a>

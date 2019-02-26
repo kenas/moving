@@ -10,7 +10,8 @@ class Tag extends Model
     //Article belogsToMany tags
     public function articles()
     {
-    	return $this->belongsToMany('App\Article');
+    	return $this->belongsToMany('App\Article')->where('publish', 1);
+        
     }
 
     //get the tags by slug of the tag

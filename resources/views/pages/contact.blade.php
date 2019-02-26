@@ -10,7 +10,7 @@
 			<div class="col-sm-7 col-md-7 col-lg-7">
 
 				<address>
-					<strong>Vladimir Havrda</strong>
+					<strong>Vladimír Havrda</strong>
 					<br>
 					&#118;&#108;&#97;&#100;&#105;&#109;&#105;&#114;&#104;&#97;&#118;&#114;&#100;&#97;&#64;&#115;&#101;&#122;&#110;&#97;&#109;&#46;&#99;&#122;
 				</address>
@@ -23,7 +23,7 @@
 			<div class="col-sm-5 col-md-5 col-lg-5">
 
 				@include('messages.errors')
-
+				
 				<div class="form-group">
 
 				{{-- {!! Form::open(['route' => 'sendEmail', 'method' => 'post', 'id' => 'contact-form']) !!} --}}
@@ -32,14 +32,14 @@
 					{{-- {{ Form::label('subject', 'Predmet', ['class' => 'control-label'])}}
 					{{Form::text('subject', null, ['class' => 'form-control  form-control-lg'])}} --}}
 					<label for="subject"></label>
-					<input type="text" v-model="subject" name="subject" class="form-control form-control-lg" value="{{ old('subject') }}" placeholder="Predmet">
+					<input type="text" v-model="subject" name="subject" class="form-control form-control-lg {{$errors->has('subject') ? 'border-danger' : '' }} " value="{{ old('subject') }}" placeholder="Předmět">
 
 					<label for="email"></label>
-					<input type="email" v-model="email" name="email" class="form-control form-control-lg" value="{{ old('email') }}" placeholder="Email">
+					<input type="email" v-model="email" name="email" class="form-control form-control-lg {{$errors->has('email') ? 'border-danger' : '' }}" value="{{ old('email') }}" placeholder="Email">
 					{{-- {{ Form::label('email', 'Vas email', ['class' => 'control-label'])}}
 					{{Form::email('email', null, ['class' => 'form-control  form-control-lg', 'placeholder' => '@'])}} --}}
 					<label for="content"></label>
-					<textarea v-model="content" name="content" class="form-control form-control-lg" rows="8" placeholder="Zda napiste Vasi zpravu">{{ old('content') }}</textarea>
+					<textarea v-model="content" name="content" class="form-control form-control-lg {{$errors->has('content') ? 'border-danger' : '' }}" rows="8" placeholder="Zde napište vaši zprávu">{{ old('content') }}</textarea>
 					{{-- {{ Form::label('content', '', ['class' => 'control-label'])}}
 					{{Form::textarea('content', null, ['class' => 'form-control  form-control-lg', 'rows' => '8', 'placeholder' => 'Vas text ...'])}} --}}
 

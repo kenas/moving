@@ -36,11 +36,11 @@ class EmailRequestValidation extends FormRequest
     {
         return [
             
-            'subject.required' => 'Uvedte predmet prosim.',
-            'subject.min' => 'Vice obsahu v predmetu prosim.',
-            'email.required' => 'Uvedte email prosim.',
+            'subject.required' => 'Vložte předmět prosím.',
+            'subject.min' => 'Více textu v předmětu prosím.',
+            'email.required' => 'Vložte svůj e-mail prosím.',
             'content.min' => 'Vice obsahu je lepsi pro vyjadreni Vaseho nazoru nebo myslenky.',
-            'content.required' => 'Obsah nemuze byt prazdny.'
+            'content.required' => 'Obsah nemůže být prázdný.'
         ];
     }
 }

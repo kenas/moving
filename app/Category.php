@@ -9,7 +9,7 @@ class Category extends Model
     //Category has many articles
     public function articles ()
     {
-    	return $this->HasMany('App\Article');
+    	return $this->HasMany('App\Article')->where('publish', 1);
     }
 
     //return slug of the category
