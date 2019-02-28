@@ -1,12 +1,18 @@
 @extends('layout')
 
 @section('head')
-	<link rel="next" href="{{$articles->nextPageUrl()}}">
+	@if($articles->onFirstPage())
+		<link rel="next" href="{{$articles->nextPageUrl()}}">
+	@elseif($articles->previousPageUrl() && $articles->nextPageUrl() )
+		<link rel="prev" href="{{ $articles->previousPageUrl() }}">
+		<link rel="next" href="{{$articles->nextPageUrl()}}">
+	@elseif($articles->nextPageUrl() == null )
+		<link rel="prev" href="{{ $articles->previousPageUrl() }}">
+	@endif
 @endsection
 @section('title', 'Kategorie | '. $title. ' | ')
 
 @section('content')
-	
 	<div class="container pt-4">
 		<div class="row">
 			<div class="col-sm-9 col-md-9 col-lg-9">

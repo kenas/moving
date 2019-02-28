@@ -8,7 +8,7 @@
         <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">O nás</a>
+        <a class="nav-link" href="#">O mně</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Historie</a>
@@ -46,7 +46,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Doporučuje</a>
+        <a class="nav-link" href="#">Reference</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{route('getEmail')}}">Kontakt</a>

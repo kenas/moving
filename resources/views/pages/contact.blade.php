@@ -15,8 +15,12 @@
 					&#118;&#108;&#97;&#100;&#105;&#109;&#105;&#114;&#104;&#97;&#118;&#114;&#100;&#97;&#64;&#115;&#101;&#122;&#110;&#97;&#109;&#46;&#99;&#122;
 				</address>
 
-				<blockquote>
-					Curabitur vitae diam non enim vestibulum interdum. Fusce consectetuer risus a nunc. Sed convallis magna eu sem. Nullam dapibus fermentum ipsum. Duis pulvinar. Sed convallis magna eu sem. Curabitur sagittis hendrerit ante. Sed elit dui, pellentesque a, faucibus vel, interdum nec, diam. Nulla non lectus sed nisl molestie malesuada. Curabitur ligula sapien,
+				<blockquote class="blockquote">
+					<p>“This art of Eurythmy is a social art in the best sense; for its aim is,
+					above all things, to communicate to us the mysteries of human nature.”</p>
+					<footer class="blockquote-footer">
+						Rudolf Steiner, October 1919
+					</footer>
 				</blockquote>	
 			</div>
 
