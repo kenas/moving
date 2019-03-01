@@ -34,4 +34,11 @@ class Article extends Model
     {
         return 'slug';
     }
+
+    //Reference belogsToMany Articles
+    public function references()
+    {
+        return $this->belongsToMany('App\Reference');
+        
+    }
 }
