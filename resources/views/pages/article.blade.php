@@ -22,21 +22,7 @@
 				<small class="text-muted"><strong>Autor:</strong> {{$articles->author}}</small>
 			</article>
 			
-			@if($articles->references)
-				@foreach($articles->references as $reference)
-					<div class="card mt-5 text-center">
-						<div class="card-header">
-							<h5>reference</h5>
-						</div>
-						<div class="card-body">
-							<blockquote class="mt-3">
-								{{ $reference->content }}
-								<footer class="blockquote-footer mt-3">Libor Gess</footer>
-							</blockquote>
-						</div>
-					</div>
-				@endforeach
-			@endif
+			@include('references.references')
 		</div>
 
 		<div class="col-12 col-sm-12 col-md-3 col-lg-2">
