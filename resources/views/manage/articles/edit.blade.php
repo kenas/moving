@@ -29,15 +29,6 @@
 				<div class="control">
 					<label>
 						<input type="file" name="coverImage">
-						{{-- {{ Form::file('coverImage', ['class' => 'file-input'])}}
-							<span class="file-cta">
-						      	<span class="file-icon">
-						        	<i class="fas fa-upload"></i>
-						      	</span>
-						      	<span class="file-label">
-						        	Choose a file…
-						      	</span>
-						    </span> --}}
 					</label>
 				</div>
 			</div>
