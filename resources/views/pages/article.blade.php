@@ -9,11 +9,12 @@
 		@if($articles)
 			<div class="col-12 col-sm-12 col-md-10 col-lg-10 pt-4">
 				<article>
+					<img src="{{ asset('images/spacer.jpg') }}"  class="ml-3 float-right" style="filter:none;" alt="">
 					<h1>{{$articles->title}}</h1>
 					<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($articles->created_at))}} | {{$articles->created_at->diffForHumans()}} | Kategorie </small><a href="{{ route('category.index', strtolower($articles->category->name))}}"><span class="badge badge-light">{{$articles->category->name}}</span></a>
 					<div class="pt-4"></div>
 					@if($articles->cover_picture) 
-						<img src="{{asset('images/'.$articles->cover_picture)}}"  class="img-fluid rounded" style="float: left; padding: 10px;">
+						<img src="{{asset('images/'.$articles->cover_picture)}}"  class="mr-3 img-fluid rounded float-left">
 					@endif
 					<p>{!! $articles->content !!}</p>
 					

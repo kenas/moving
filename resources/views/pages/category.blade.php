@@ -21,7 +21,7 @@
 						<article class="mb-5">
 
 							@if($article->cover_picture)
-								<img src="{{asset('images/'.$article->cover_picture)}}" class="img-fluid rounded float-left" style="padding: 10px;">
+								<img src="{{asset('images/'.$article->cover_picture)}}" class="mr-3 img-fluid rounded float-left">
 							@endif
 
 							<h1><a href="{{ route('articles.show', ['kategorie' => strtolower($article->category->name), 'clanek' => $article->slug])}}">{{$article->title}}</a></h1>
