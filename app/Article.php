@@ -12,12 +12,12 @@ class Article extends Model
     protected $table = 'articles';
     //protected $fillable = ['cover_picture', 'title', 'slug', 'content', 'category_id', 'author', 'publish', 'created_at', 'updated_at'];
     //Articles belogTo to category
-    public function category ()
+    public function category()
     {
     	return $this->belongsTo('App\Category');
     }
 
-    //Articles belongsToMany image
+    //Articles belongsToMany images
     public function images() 
     {
     	return $this->belongsToMany('App\Image');

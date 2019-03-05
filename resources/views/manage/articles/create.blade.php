@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+{{-- @section('head')
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
+@endsection --}}
+
 @section('content')
 	<div class="container">
 
@@ -28,7 +34,7 @@
         <div class="field">
             <div class="control">
                 <label>
-                    <input type="file" name="coverImage">
+                    <input type="file" name="coverImage[]" multiple>
                 </label>
             </div>
         </div>
@@ -59,7 +65,9 @@
         <div class="field">
             <div class="control">
 				{{ Form::label('content', 'Content:') }}
-				{{ Form::textarea('content', null, ['class' => 'textarea']) }}
+               {{--   <div id="summernote"> --}}
+				    {{ Form::textarea('content', null, ['class' => 'textarea']) }}
+                {{-- </div> --}}
             </div>
         </div>
 
@@ -74,7 +82,13 @@
 		{!! Form::close() !!}
 	</div>
 
-
+    <script>
+{{--       $('#summernote').summernote({
+        placeholder: 'Hello bootstrap 4',
+        tabsize: 2,
+        height: 200
+      });
+    </script> --}}
     {{-- <script type="text/javascript">
     	const titleCreateNewArticle = document.getElementsByTagName('h1')[0];
     	const inputTitleGetValue = document.getElementById('title');

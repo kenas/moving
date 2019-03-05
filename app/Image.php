@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
-	//Image belongsToMany article
+	//Image belongsToMany articles
 	public function articles() {
     	return $this->belongsToMany('App\Article');
 	}

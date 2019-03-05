@@ -1,7 +1,7 @@
 @if($articles->references->count() >= 1)
 	<div id="carouselExampleSlidesOnly" class="carousel slide mt-5" data-ride="carousel">
 
-		<h5>reference</h5>
+		<h5>Reference</h5>
 		<div class="carousel-inner">
 			@foreach($articles->references as $reference)
 			{{-- {{ dd($loop->first) }} --}}

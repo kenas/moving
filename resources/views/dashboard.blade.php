@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Moving Well - Dashboard')
+
 @section('content')
 <div id="app">
 
@@ -25,7 +27,7 @@
             <div class="column">
                 <div class="field">
                   <div class="control">
-                    <input class="input is-medium" type="text" placeholder="Hleat clanek" @keyup.enter="searchit" v-model="search">
+                    <input class="input is-medium" type="text" placeholder="Zadejte nadpis článeku a stiskněte enter" @keyup.enter="searchit" v-model="search">
                     <p v-for="result in searchResult">
                         <a v-bind:href="result.link">@{{result.title}}</a>
                     </p>

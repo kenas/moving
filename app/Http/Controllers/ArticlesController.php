@@ -16,7 +16,10 @@ use App\Mail\sendContactForm;
 
 class ArticlesController extends Controller
 {
+    public function __construct() {
 
+        $this->middleware('auth', ['only' => ['create', 'store', 'delete']]);
+    }
     /**
      * Show the form for creating a new resource.
      *

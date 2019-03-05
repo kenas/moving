@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Moving Well') }}</title>
+    <title>@yield('title')</title>
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
@@ -52,9 +52,9 @@
       <div class="navbar-item">
         <div class="buttons">
            @guest
-              <a class="button is-light" href="{{route('login')}}">
+{{--               <a class="button is-light" href="{{route('login')}}">
                 Login
-              </a>
+              </a> --}}
             @else
 
               <a href="{{route('articles.create')}}" class="button is-info">Create article</a>

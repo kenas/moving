@@ -117,3 +117,21 @@ img {
 .modal-card {
   width: 970px;
 }
+
+@media screen and (min-width: 576px) {
+  .slice {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) { 
+  .slice {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .slice {
+    display: block;
+  }
+}
