@@ -27,7 +27,7 @@
             <div class="column">
                 <div class="field">
                   <div class="control">
-                    <input class="input is-medium" type="text" placeholder="Zadejte nadpis článeku a stiskněte enter" @keyup.enter="searchit" v-model="search">
+                    <input class="input is-medium" type="text" placeholder="Zadejte nadpis článeku a stiskněte enter" v-on:keyup="searchit" v-model="search">
                     <p v-for="result in searchResult">
                         <a v-bind:href="result.link">@{{result.title}}</a>
                     </p>
@@ -278,15 +278,19 @@
           },
 
           searchit: function() {
-            
-            axios.get('/search?q=' + this.search)
+            if(this.search !== '') { 
+              axios.get('/search?q=' + this.search)
+
                 .then((data) => {
 
-                    this.searchResult = data.data
-                    this.buildLinkForResult()
+                 this.searchResult = data.data  
+                    //this.searchResult = data.data
+                    setTimeout(() => this.buildLinkForResult(), 2000)
                    
                 });
-
+              } else {
+                this.searchResult = "";
+              }
           },
 
           buildLinkForResult: function() {
