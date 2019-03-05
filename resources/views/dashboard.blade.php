@@ -27,7 +27,7 @@
             <div class="column">
                 <div class="field">
                   <div class="control">
-                    <input class="input is-medium" type="text" placeholder="Zadejte nadpis článeku a stiskněte enter" v-on:keyup="searchit" v-model="search">
+                    <input class="input is-medium" type="text" placeholder="Zadejte nadpis článeku" v-on:keyup="searchit" v-model="search">
                     <p v-for="result in searchResult">
                         <a v-bind:href="result.link">@{{result.title}}</a>
                     </p>
@@ -298,7 +298,7 @@
             //const hostName =  window.location.hostname;
 
            if(this.checkObjectEmptyOrNot()){
-                this.searchResult.errorMessage = 'Clanek nebyl nalezen v databazy';
+                this.searchResult.errorMessage = 'článek nebyl nalezen v databázi';
                 
            }
 
