@@ -27,6 +27,8 @@ class ContactFormController extends Controller
 
 
         Mail::to('test@test.cz')->send(new sendContactForm($data));
+
+        return redirect('/kontakt')->with('status', 'Děkuji, Váš email byl úspěšně odeslán.');
     }
  
 }

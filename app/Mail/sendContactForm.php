@@ -1,4 +1,4 @@
-h<?php
+<?php
 
 namespace App\Mail;
 
@@ -29,9 +29,7 @@ class sendContactForm extends Mailable
      */
     public function build()
     {
-        return $this->from('automaticemail@website.cz')
-            ->subject('Message from website')
-            ->view('pages.sendFormContact')
-            ->with('data', $this->data);
+        return $this->markdown('pages.sendFormContact')->with('data', $this->data);
+   
     }
 }

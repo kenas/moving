@@ -33,7 +33,7 @@
 
             <div class="field">
               <p class="control has-icons-left">
-                <input id="password" type="password" class="input is-medium {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
+                <input type="password" id="password" class="input is-medium {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
                 <span class="icon is-small is-left">
                   <i class="fas fa-lock"></i>
                 </span>

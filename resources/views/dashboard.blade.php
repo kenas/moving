@@ -5,13 +5,11 @@
 @section('content')
 <div id="app">
 
-    <div class="container is-fluid">
+<div class="container is-fluid">
 
 {{--         @if(Session::has('status'))
-
             @include('messages.success')
             {{ Session::forget('status') }}
-
         @endif --}}
 
         <div class="notification is-success" v-if="confirmDeleteMessage">
@@ -27,11 +25,13 @@
             <div class="column">
                 <div class="field">
                   <div class="control">
-                    <input class="input is-medium" type="text" placeholder="Zadejte nadpis článeku" v-on:keyup="searchit" v-model="search">
-                    <p v-for="result in searchResult">
-                        <a v-bind:href="result.link">@{{result.title}}</a>
-                    </p>
+                      <input class="input is-medium" type="text" placeholder="Zadejte nadpis článeku" v-on:keyup="searchit" v-model="search">
+                        <div class="list is-hoverable" style="z-index: 1; position: absolute;">
 
+                          <div v-for="result in searchResult">
+                              <a v-bind:href="result.link" class="list-item">@{{result.title}}</a>
+                          </div>
+                        </div>
                   </div>
                 </div>
                 <table class="table">
@@ -52,28 +52,28 @@
                     </thead>
                     <tbody>
                         
-                        @foreach($articles as $article)
-                            <tr>
-                                <th scope="row">{{ $article->id}}</th>
-                                <td>{{ str_limit($article->title, 30)}}</td>
-                                <td><strong>{{ ($article->cover_picture) ? 'Yes' : 'No' }}</strong></td>
-                                <td><span class="tag is-light is-medium">{{ $article->category->name }}</span></td>
-                                <td>
+                    @foreach($articles as $article)
+                        <tr>
+                            <th scope="row">{{ $article->id}}</th>
+                            <td>{{ str_limit($article->title, 30)}}</td>
+                            <td><strong>{{ ($article->cover_picture) ? 'Yes' : 'No' }}</strong></td>
+                            <td><span class="tag is-light is-medium">{{ $article->category->name }}</span></td>
+                            <td>
 
-                                    @if($article->publish) 
-                                        <form method="POST" action="{{route('status.publish', $article->id)}}">
-                                        @csrf
-                                          @method('PUT')
-                                            <button v-on:click="changePublish({{json_encode($article)}})"  type="submit" class="button is-success">Active</button>
-                                        </form>
+                                @if($article->publish) 
+                                    
+                                    @csrf
+                                      @method('PUT')
+                                        <button v-on:click="changePublish({{json_encode($article)}}, $event)"  type="submit" class="button is-success">Active</button>
+                                    
 
-                                    @else 
-                                        <form method="POST" action="{{route('status.publish', $article->id)}}">
-                                        @csrf
-                                          @method('PUT')
-                                            <button v-on:click="changePublish({{json_encode($article)}})" type="submit" class="button is-warning">Inactive</button> 
-                                        </form>
-                                    @endif
+                                @else 
+                                  
+                                    @csrf
+                                      @method('PUT')
+                                        <button v-on:click="changePublish({{json_encode($article)}}, $event)" type="submit" class="button is-warning">Inactive</button> 
+                                    
+                                @endif
 
                                 </td>
                                 <td>{{ $article->author}}</td>
@@ -117,20 +117,16 @@
           <button v-on:click="closeModal" class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
-
             <div class="field">
               <div class="control">
                 <input v-model="placeHolderArticle.title" class="input is-medium" type="text" name="title" placeholder="Primary input">
               </div>
             </div>
-
             <div class="field">
               <div class="control">
                 <textarea v-model="placeHolderArticle.content" class="textarea is-medium" rows="15"></textarea>
               </div>
             </div>
-
-
         </section>
         <footer class="modal-card-foot">
           <button v-on:click="sendReqestUpdate(placeHolderArticle)" class="button is-success">Save changes</button>
@@ -142,7 +138,6 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 
 <script type="text/javascript">
-
     const  app = new Vue({
         el: '#app',
         data: {
@@ -150,43 +145,33 @@
           placeHolderArticle: '',
           publishStatus: '',
           publishStatusText: '',
-
           alertConfirmDelete: false,
           confirmDeleteMessage: '',
           search: '',
           searchResult: '',
           test: '',
-
         },
-
         methods: {
-
           refreshPage: function() {
-
             if(this.alertConfirmDelete == true) {
-
               setTimeout(function(){ 
                 window.location.reload(true);
               }, 2500);
             }
             
           },
-
           openModal: function(article) {
             //console.log(article);
             this.placeHolderArticle = article;
             this.toogleModal = true;
             
           },
-
           closeModal: function () {
             this.toogleModal = false;
             this.placeHolderArticle = '';
           },
-
           sendReqestUpdate: function (article) {
             event.preventDefault();
-
             const confirm = this;
             axios.post('/article/' + article.id,  {
                 title:        this.placeHolderArticle.title,
@@ -196,7 +181,6 @@
               })
               .then(function (response) {
                
-
                 if(response.status === 200 && response.statusText === 'OK') {
                   confirm.toogleModal = false;
                   confirm.placeHolderArticle = '';
@@ -206,11 +190,10 @@
                 console.log(error);
               });
           },
-
-          changePublish: function(article) {
-
-            //event.preventDefault();
-            this.publishStatus = article.publish;
+          changePublish: function(article, event) {
+            
+            console.log(article.publish);
+            this.publishStatus = article;
             if(article.publish == 1) {
               //axios 
               const confirm = this;
@@ -218,10 +201,22 @@
                   publish:      article.publish = 0
                 })
                 .then(function (response) {   
-
                   if(response.status === 200 && response.statusText === 'OK') {
                     //confirm.toogleModal = false;
                     //confirm.placeHolderArticle = '';
+
+
+                    const toActive = event.target;
+           
+                    toActive.textContent = 'Inactive'; 
+                    toActive.className = 'button is-warning';
+                    this.publishStatus = '';
+                    location.reload();
+               
+
+                    //grap the target button 
+                    //change the content of text to Inactive 
+                    //class name
                   }
                 })
                 .catch(function (error) {
@@ -229,16 +224,21 @@
                 });
             } else if(article.publish == 0) {
               //set articles publish to 0 and axios
-
               const confirm = this;
               axios.put('/publish/' + article.id,  {
                   publish:      article.publish = 1
                 })
                 .then(function (response) {   
-
                   if(response.status === 200 && response.statusText === 'OK') {
                     //confirm.toogleModal = false;
                     //confirm.placeHolderArticle = '';
+                    const toActive = event.target;
+                   
+                    toActive.textContent = 'Active'; 
+                    toActive.className = 'button is-success';
+                    this.publishStatus = '';
+                    location.reload();
+                  
                   }
                 })
                 .catch(function (error) {
@@ -246,20 +246,17 @@
                 });
             }
           },
-
           deleteArticle: function(id) {
             this.alertConfirmDelete = confirm('Are you sure that you want to remove the article? '+id.title+' ');
             
               if(this.alertConfirmDelete) {
                 //do axios 
-
                 const confirm = this;
                 axios.delete('/article/' + id.id,  {
                   id: id.id
               })
               .then(function (response) {
                
-
                 if(response.status === 200 && response.statusText === 'OK') {
                   
                   confirm.confirmDeleteMessage = response.data;
@@ -268,21 +265,15 @@
               .catch(function (error) {
                 console.log(error);
               });
-
               } else {
                 //do nothing
-
               }
-
               this.refreshPage();
           },
-
           searchit: function() {
             if(this.search !== '') { 
               axios.get('/search?q=' + this.search)
-
                 .then((data) => {
-
                  this.searchResult = data.data  
                     //this.searchResult = data.data
                     setTimeout(() => this.buildLinkForResult(), 2000)
@@ -292,47 +283,34 @@
                 this.searchResult = "";
               }
           },
-
           buildLinkForResult: function() {
-
             //const hostName =  window.location.hostname;
-
            if(this.checkObjectEmptyOrNot()){
                 this.searchResult.errorMessage = 'článek nebyl nalezen v databázi';
                 
            }
-
             for(let i = 0; i< this.searchResult.length; i++){
-
                 if(this.searchResult[i].id >=1){
                     this.searchResult[i].link = '/article/'+this.searchResult[i].id +'/edit';           
                 }
             }
             this.search = "";
           },
-
-
           checkObjectEmptyOrNot: function () {
-
                 for(var key in this.searchResult) {
                     if (this.searchResult.hasOwnProperty(key)) {
                         return false;
                     }
                 }
-
                 return true;
-
           }
           
         },
-
         watch: {
           placeHolderArticle: function() {
             
           },
-
           publishStatus: function() {
-
             if(this.publishStatus == 1) {
               this.publishStatusText = true
               //this.publishStatusText = ''; 
@@ -342,14 +320,10 @@
               //this.publishStatusText = ''; 
               this.publishStatus = '';
             }
-
           },
-
           confirmDeleteMessage: function() {
-
           }
         }
-
     });
 </script>
 @endsection

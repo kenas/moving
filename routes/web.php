@@ -11,11 +11,11 @@ Route::get('/', function () {
 	return view('pages.welcome', compact('articles'));
 })->name('welcomepage');
 	
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/dashboard', 'ArticlesController@index')->name('dashboard');
 Route::resource('/articles', 'ArticlesController');
-Route::match(['put', 'patch'], '/publish/{id}', 'HomeController@updatePublish')->name('status.publish');
-Route::patch('/article/{id}', 'HomeController@updateArticle')->name('update.article');
-Route::get('/article/{id}/edit', 'HomeController@edit')->name('edit.article');
+Route::put('/publish/{id}', 'HomeController@updatePublish')->name('status.publish');
+Route::patch('/article/{id}', 'ArticlesController@update')->name('update.article');
+Route::get('/article/{id}/edit', 'ArticlesController@edit')->name('edit.article');
 Route::match(['put', 'delete'], 'article/{id}', 'HomeController@destroy')->name('article.destroy');
 Route::get('/dashboard/categories', 'CategoryController@allCategoryForDashboard')->name('dashboard.categories');
 Route::post('/dashboard/categories/store', 'CategoryController@store')->name('categories.store');
