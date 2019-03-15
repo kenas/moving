@@ -8,11 +8,22 @@
 	<div class="row">
 		@if($articles)
 			<div class="col-12 col-sm-12 col-md-10 col-lg-10 pt-4">
+
 				<article>
 					<img src="{{ asset('images/spacer.jpg') }}"  class="slice ml-3 float-right" style="filter:none;" alt="">
 					<h1>{{$articles->title}}</h1>
-					<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($articles->created_at))}} | {{$articles->created_at->diffForHumans()}} | Kategorie </small><a href="{{ route('category.index', strtolower($articles->category->name))}}"><span class="badge badge-light">{{$articles->category->name}}</span></a>
-					<div class="pt-4"></div>
+					<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($articles->created_at))}} | {{$articles->created_at->diffForHumans()}}</small>
+					<div class="pt-3"></div>
+
+					<nav aria-label="breadcrumb">
+					  <ol class="breadcrumb">
+					    <li class="breadcrumb-item"><a href="{{ route('welcomepage') }}">Home</a></li>
+					    <li class="breadcrumb-item"><a href="{{ route('category.index', strtolower($articles->category->name)) }}">Kategorie</a></li>
+					    <li class="breadcrumb-item active" aria-current="page">{{ $articles->title }}</li>
+					  </ol>
+					</nav>
+
+					<div class="pt-3"></div>
 					@if($articles->cover_picture) 
 						<img src="{{asset('images/'.$articles->cover_picture)}}"  class="mr-3 img-fluid rounded float-left">
 					@endif
