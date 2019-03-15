@@ -22,7 +22,7 @@
 					    <li class="breadcrumb-item active" aria-current="page">{{ $articles->title }}</li>
 					  </ol>
 					</nav>
-
+tets
 					<div class="pt-3"></div>
 					@if($articles->cover_picture) 
 						<img src="{{asset('images/'.$articles->cover_picture)}}"  class="mr-3 img-fluid rounded float-left">
