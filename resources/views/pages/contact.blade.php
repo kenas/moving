@@ -7,22 +7,6 @@
 <div id="app">	
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-7 col-md-7 col-lg-7">
-				<address>
-					<strong>Vladimír Havrda</strong>
-					<br>
-					&#118;&#108;&#97;&#100;&#105;&#109;&#105;&#114;&#104;&#97;&#118;&#114;&#100;&#97;&#64;&#115;&#101;&#122;&#110;&#97;&#109;&#46;&#99;&#122;
-				</address>
-
-				<blockquote class="blockquote">
-					<p>“This art of Eurythmy is a social art in the best sense; for its aim is,
-					above all things, to communicate to us the mysteries of human nature.”</p>
-					<footer class="blockquote-footer">
-						Rudolf Steiner, October 1919
-					</footer>
-				</blockquote>	
-			</div>
-
 			<div class="col-sm-5 col-md-5 col-lg-5">
 				
 				<div class="form-group">
@@ -60,6 +44,22 @@
 				</form>
 				{{-- {!! Form::close()!!} --}}
 				</div>
+			</div>
+
+			<div class="col-sm-7 col-md-7 col-lg-7">
+				<address>
+					<strong>Vladimír Havrda</strong>
+					<br>
+					&#118;&#108;&#97;&#100;&#105;&#109;&#105;&#114;&#104;&#97;&#118;&#114;&#100;&#97;&#64;&#115;&#101;&#122;&#110;&#97;&#109;&#46;&#99;&#122;
+				</address>
+
+				<blockquote class="blockquote">
+					<p>“This art of Eurythmy is a social art in the best sense; for its aim is,
+					above all things, to communicate to us the mysteries of human nature.”</p>
+					<footer class="blockquote-footer">
+						Rudolf Steiner, October 1919
+					</footer>
+				</blockquote>	
 			</div>
 		</div>
 	</div>
