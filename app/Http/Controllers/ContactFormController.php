@@ -19,6 +19,7 @@ class ContactFormController extends Controller
 
     public function sendEmail(EmailRequestValidation $request) {
 
+        //dd($request);
         $data = [
             'subject' => $request->subject,
             'email' => $request->email,
@@ -27,8 +28,6 @@ class ContactFormController extends Controller
 
 
         Mail::to('test@test.cz')->send(new sendContactForm($data));
-
-        return redirect('/kontakt')->with('status', 'Děkuji, Váš email byl úspěšně odeslán.');
     }
  
 }

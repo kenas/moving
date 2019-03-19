@@ -12,7 +12,7 @@
 	    <div class="carousel-item active">
 	      <img class="d-block w-100" src="{{asset('banners/children.jpg')}}" alt="First slide">
 	        <div class="carousel-caption d-none d-md-block">
-		    	<h2>Eurythmy pohyb pro zdrave telo, duse v rovnovaze, bdelost & soucit</h2>
+		    	<h2>Eurythmy pohyb pro zdravé tělo, duše v rovnováze, bdělost a soucitu</h2>
 		  	</div>
 	    </div>
 	    <div class="carousel-item">
@@ -52,8 +52,8 @@
 					<img src="{{asset('images/'.$article->cover_picture)}}" class="img-fluid rounded float-left" style="padding: 10px;">
 				@endif
 				<h1><a href="{{ route('articles.show', ['kategorie' => strtolower($article->category->name), 'clanek' => $article->slug])}}">{{$article->title}}</a></h1>
-				<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($article->created_at))}} | {{$article->created_at->diffForHumans()}} | autor: {{$article->author}} | Kategorie </small><a href="{{ route('category.index', strtolower($article->category->name))}}"><span class="badge badge-light">{{$article->category->name}}</span></a>
-				<p>{!!str_limit($article->content, 300)!!}</p>
+				<i class="far fa-clock"></i> <small class="text-muted">{{$article->created_at->diffForHumans()}} </small>{{-- | autor: {{$article->author}} | Kategorie </small><a href="{{ route('category.index', strtolower($article->category->name))}}"><span class="badge badge-light">{{$article->category->name}}</span></a>
+ --}}				<p>{!!str_limit($article->content, 300)!!}</p>
 
 				
 				@if(!$article->tags->isEmpty())

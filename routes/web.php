@@ -16,7 +16,7 @@ Route::resource('/articles', 'ArticlesController');
 Route::put('/publish/{id}', 'HomeController@updatePublish')->name('status.publish');
 Route::patch('/article/{id}', 'ArticlesController@update')->name('update.article');
 Route::get('/article/{id}/edit', 'ArticlesController@edit')->name('edit.article');
-Route::match(['put', 'delete'], 'article/{id}', 'HomeController@destroy')->name('article.destroy');
+Route::delete('article/{id}', 'HomeController@destroy')->name('article.destroy');
 Route::get('/dashboard/categories', 'CategoryController@allCategoryForDashboard')->name('dashboard.categories');
 Route::post('/dashboard/categories/store', 'CategoryController@store')->name('categories.store');
 Route::get('/search', 'HomeController@search');
@@ -26,5 +26,5 @@ Route::get('/kategorie/{slug}', 'CategoryController@index')->name('category.inde
 Route::get('/kategorie/{category}/clanek/{slug}', 'ArticlesController@show')->name('articles.show');
 Route::get('/tag/{tag}', 'TagController@index')->name('tag.index');
 Route::get('/kontakt', 'ContactFormController@getEmail')->name('getEmail');
-Route::post('/kontakt/odeslano', 'ContactFormController@sendEmail')->name('sendEmail');
+Route::post('/odeslat', 'ContactFormController@sendEmail')->name('sendEmail');
 

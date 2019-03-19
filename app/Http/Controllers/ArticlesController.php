@@ -192,20 +192,21 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function destroy($id)
-    // {
-    //     $deleteRecordByTrash = Article::find($id);
-    //     $deleteRecordByTrash->tags()->detach();
-    //     //delete the cover picture from the images storage
-    //     $pictureDeleteFromStorage = $deleteRecordByTrash->cover_picture;
-    //     Storage::delete($pictureDeleteFromStorage);
+    public function destroy($id)
+    {
+        $deleteRecordByTrash = Article::find($id);
+        $deleteRecordByTrash->tags()->detach();
+        //delete the cover picture from the images storage
+        $pictureDeleteFromStorage = $deleteRecordByTrash->cover_picture;
+        Storage::delete($pictureDeleteFromStorage);
 
-    //     //and update database with NULL because the article is still there (soft delete)
-    //     $deleteRecordByTrash->cover_picture = null;
-    //     $deleteRecordByTrash->save();
+        //and update database with NULL because the article is still there (soft delete)
+        $deleteRecordByTrash->cover_picture = null;
+        $deleteRecordByTrash->save();
         
-    //     $deleteRecordByTrash->delete();
+        $deleteRecordByTrash->delete();
 
-    //     return redirect('/dashboard')->with('status', 'The article was successfully deleted!');
-    // }
+        return ['message' => 'Článk byl odstraněn webu, nikoliv však z databáze.'];
+        //return redirect('/dashboard')->with('status', 'The article was successfully deleted!');
+    }
 }

@@ -55,7 +55,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   //dd($id)
         $deleteRecordByTrash = Article::findOrFail($id);
         //remove all tags relate to the article
         //$deleteRecordByTrash->tags()->detach();
@@ -70,7 +70,7 @@ class HomeController extends Controller
         
         $deleteRecordByTrash->delete();
 
-        return ['message' => 'Clank byl odstranen z dashboardu a webu, nikoliv vsak z databaze.'];
+        return ['message' => 'Článk byl odstraněn webu, nikoliv však z databáze.'];
     }
 
 }

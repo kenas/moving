@@ -96,7 +96,7 @@
                                         {{-- @csrf --}}
                                  
                                         <button v-on:click="deleteArticle({{json_encode($article)}})" type="submit" class="button is-danger">Delete</button>
-                               {{--      </form> --}}
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -252,7 +252,7 @@
               if(this.alertConfirmDelete) {
                 //do axios 
                 const confirm = this;
-                axios.delete('/article/' + id.id,  {
+                axios.delete('/articles/' + id.id,  {
                   id: id.id
               })
               .then(function (response) {
@@ -268,7 +268,7 @@
               } else {
                 //do nothing
               }
-              this.refreshPage();
+             this.refreshPage();
           },
           searchit: function() {
             if(this.search !== '') { 

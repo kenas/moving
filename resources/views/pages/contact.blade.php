@@ -8,11 +8,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-5 col-md-5 col-lg-5">
-				
+				@if(Session::has('status'))
+					send
+				@endif
 				<div class="form-group">
 
 				{{-- {!! Form::open(['route' => 'sendEmail', 'method' => 'post', 'id' => 'contact-form']) !!} --}}
-				<form action="{{route('sendEmail')}}" method="POST">
+				<form action="{{route('sendEmail')}}" accept-charset="UTF-8" method="POST">
 					@csrf
 					{{-- {{ Form::label('subject', 'Predmet', ['class' => 'control-label'])}}
 					{{Form::text('subject', null, ['class' => 'form-control  form-control-lg'])}} --}}
