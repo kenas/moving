@@ -18,7 +18,7 @@
 					<nav aria-label="breadcrumb">
 					  <ol class="breadcrumb">
 					    <li class="breadcrumb-item"><a href="{{ route('welcomepage') }}">Home</a></li>
-					    <li class="breadcrumb-item"><a href="{{ route('category.index', strtolower($articles->category->name)) }}">Kategorie</a></li>
+					    <li class="breadcrumb-item"><a href="{{ route('category.index', strtolower($articles->category->name)) }}">{{ $articles->category->name }}</a></li>
 					    <li class="breadcrumb-item active" aria-current="page">{{ $articles->title }}</li>
 					  </ol>
 					</nav>
