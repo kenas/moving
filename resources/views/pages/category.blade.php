@@ -21,11 +21,11 @@
 						<article class="mb-5">
 
 							@if($article->cover_picture)
-								<img src="{{asset('images/'.$article->cover_picture)}}" class="mr-3 img-fluid rounded float-left">
+								<img src="{{ $article->cover_picture}}" class="mr-3 img-fluid rounded float-left">
 							@endif
 
-							<h1><a href="{{ route('articles.show', ['kategorie' => strtolower($article->category->name), 'clanek' => $article->slug])}}">{{$article->title}}</a></h1>
-							<a href="{{route('category.index', strtolower($article->category->name)) }}">{{-- <span class="badge badge badge-info">{{$article->category->name}}</span> --}}</a>
+							<h1><a href="{{ route('articles.show', ['kategorie' => strtolower($article->category->slug), 'clanek' => $article->slug])}}">{{$article->title}}</a></h1>
+							<a href="{{route('category.index', strtolower($article->category->slug)) }}">{{-- <span class="badge badge badge-info">{{$article->category->name}}</span> --}}</a>
 							<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($article->created_at))}} | {{$article->created_at->diffForHumans()}} | autor: {{$article->author}}</small>
 							<p>{!!str_limit($article->content, 300)!!}</p>
 
@@ -57,7 +57,7 @@
 						  		@foreach($categories as $category)
 
 						  			@if($category->articles->count())
-						    			<li class="list-group-item @if(Request::fullUrl() === route('category.index', strtolower($category->name))) active @endif"><a href="{{ route('category.index', strtolower($category->name))}}">
+						    			<li class="list-group-item @if(Request::fullUrl() === route('category.index', strtolower($category->name))) active @endif"><a href="{{ route('category.index', strtolower($category->slug))}}">
 						    			{{$category->name}}</a> <span class="badge badge-light">{{$category->articles->count()}}</span></li>	
 						    		@endif
 						    

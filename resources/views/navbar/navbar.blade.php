@@ -31,7 +31,7 @@
                 @endif
 
 
-                " href="{{route('category.index', strtolower($category->name)) }}">{{$category->name}}</a>
+                " href="{{route('category.index', strtolower($category->slug)) }}">{{$category->name}}</a>
               @else
 
               @endif

@@ -4,7 +4,9 @@
 
 <div class="container">
 	{!! Form::open(['route' => 'categories.store']) !!}
-		{{Form::text('category', null, ['class' => 'input is-medium', 'placeholder' => 'Nova kategorie?'])}}
+		{{Form::text('category', null, ['class' => 'input is-medium', 'placeholder' => 'Název nové kategorie'])}}
+		{{ Form::text('slug', null, ['class' => 'input is-medium', 'placeholder' => 'Dvě slova o čem je kategorie']) }}
+		<button>send</button>
 	{!! Form::close() !!}
 	<div class="mt-5"></div>
 	<table class="table is-fullwidth">

@@ -8,7 +8,7 @@
 				<div class="card text-center">
 				  <div class="card-body">
 				    <h1 class="card-title">404</h1>
-				    <p class="card-text">Oops! Stranka nebyla nalezena. Mohla by Vas zajimat podobna temata.</p>
+				    <p class="card-text">Oops! Stránka nebyla nalezena. Mohla by Vás zajímat podobná témata.</p>
 				  </div>
 				</div>
 
@@ -16,10 +16,10 @@
 			<ul class="list-group list-group-flush">
 
 			  	@foreach($articles as $article)
-
+					{{-- {{ dd($article->category->name) }} --}}
 			  		<li class="list-group-item">
-			  			<a href="{{route('articles.show', ['kategorie' => strtolower($article->category->name), 'clanek' => $article->slug])}}">{{$article->title}}</a>
-			  			<a href="{{route('category.index', strtolower($article->category->name))}}"><span class="badge badge badge-info">{{$article->category->name}}</a></span>
+			  			<a href="{{route('articles.show', ['kategorie' => 'sdsdsd', 'clanek' => 'sddsds'])}}">{{$article->title}}</a>
+			  			{{-- <a href="{{route('category.index', strtolower($article->category->slug))}}"><span class="badge badge badge-info">{{$article->category->name}}</a></span> --}}
 			  		</li>
 
 

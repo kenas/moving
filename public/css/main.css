@@ -24,9 +24,9 @@ h2 {
   animation-duration: 1s;
 }
 
-img {
+/*img {
   filter: grayscale(100%);
-}
+}*/
 
 @keyframes niceLand {
   0% {

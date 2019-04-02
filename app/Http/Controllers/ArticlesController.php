@@ -181,7 +181,7 @@ class ArticlesController extends Controller
         $articles = Article::whereNotIn('publish', [0])
             ->where('slug', $slug)->firstOrFail();
 
-        $categories = Category::where('name', $category)->firstOrFail();
+        $categories = Category::where('slug', $category)->firstOrFail();
        
         return view('pages.article', compact('articles', 'categories'));
     }

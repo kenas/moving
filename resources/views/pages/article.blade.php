@@ -18,13 +18,13 @@
 					<nav aria-label="breadcrumb">
 					  <ol class="breadcrumb">
 					    <li class="breadcrumb-item"><a href="{{ route('welcomepage') }}">Home</a></li>
-					    <li class="breadcrumb-item"><a href="{{ route('category.index', strtolower($articles->category->name)) }}">{{ $articles->category->name }}</a></li>
+					    <li class="breadcrumb-item"><a href="{{ route('category.index', strtolower($articles->category->slug)) }}">{{ $articles->category->name }}</a></li>
 					    <li class="breadcrumb-item active" aria-current="page">{{ $articles->title }}</li>
 					  </ol>
 					</nav>
 					<div class="pt-3"></div>
 					@if($articles->cover_picture) 
-						<img src="{{asset('images/'.$articles->cover_picture)}}"  class="mr-3 img-fluid rounded float-left">
+						<img src="{{ $articles->cover_picture}}"  class="mr-3 img-fluid rounded float-left">
 					@endif
 					<p>{!! $articles->content !!}</p>
 					
@@ -63,7 +63,7 @@
 								@if($moreArticles->id == $articles->id)
 								
 							@else
-								<li class="list-group-item"><a href="{{ route('articles.show', ['kategorie'=> strtolower($moreArticles->category->name), 'clanek' => $moreArticles->slug])}}">{{$moreArticles->title}}</a></li>
+								<li class="list-group-item"><a href="{{ route('articles.show', ['kategorie'=> strtolower($moreArticles->category->slug), 'clanek' => $moreArticles->slug])}}">{{$moreArticles->title}}</a></li>
 							@endif
 
 							@endforeach

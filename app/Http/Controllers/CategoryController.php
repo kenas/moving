@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Category;
 
+use Illuminate\Support\Facades\DB; 
 use Illuminate\Http\Request;
 //use Symfony\Component\HttpFoundation\Exception\HttpException;
 
@@ -23,8 +24,8 @@ class CategoryController extends Controller
      */
     public function index($slug)
     {
-
-        $category = Category::where('name', $slug)->firstOrFail();
+        //return $slug;
+        $category = Category::where('slug', $slug)->firstOrFail();
 
         //dd($category->name);
         $categories = Category::orderBy('name', 'ASC')->get();
@@ -42,12 +43,15 @@ class CategoryController extends Controller
     }
 
     public function getAllCategories () {
+           
+         $getAllCategories = Category::with('articles')
+            ->orderBy('created_at', 'DESC')
+            ->get();
 
-        $getAllCategories = Category::all();
+          // dd($getAllCategories);
        
-
-        //dd($getAllCategories);
-        return view('navbar.navbar', compact('getAllCategories'));
+        
+        return view('pages.categories', compact('getAllCategories'));
     }
 
 
@@ -77,15 +81,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->category);
+       //return $request;
         $validateData = $request->validate([
 
-            'category' => 'required'
+            'category'  => 'required',
+            'slug'      => 'required|unique:categories'
         ]);
 
         $newCategory = new Category;
 
         $newCategory->name = $request->category;
+        $newCategory->slug = str_slug($request->slug);
         $newCategory->save();
 
         return back();
