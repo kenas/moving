@@ -13,13 +13,13 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        // Schema::create('images', function (Blueprint $table) {
-        //     $table->increments('id');
-        //     $table->string('path', 50);
-        //     $table->string('title');
-        //     //$table->text('description');
-        //     $table->timestamps();
-        // });
+        Schema::create('images', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('path', 50);
+            $table->string('title');
+            //$table->text('description');
+            $table->timestamps();
+        });
     }
 
     /**
