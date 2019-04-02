@@ -14,7 +14,7 @@
 							<div class="card-body">
 							<h5 class="card-title">{{ $category->name }}</h5>
 								@foreach($category->articles->take(1) as $article)
-									<p>{{ str_limit($article->content, 150) }}</p>
+									<p>{!! str_limit($article->content, 150) !!}</p>
 								@endforeach
 							</div>
 							<ul class="list-group list-group-flush">
