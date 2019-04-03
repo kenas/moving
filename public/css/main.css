@@ -54,9 +54,12 @@ h2 {
 }
 
 .format-text, p {
-  letter-spacing: 0.6px;
+ letter-spacing: 0.6px;
   line-height: 170%;
-  font-size: 1.5vw;
+ /* font-size: 1.5vw;*/
+
+    font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  /*line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));*/
 }
 
 .blog-post-meta {
