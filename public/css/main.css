@@ -118,8 +118,8 @@ img {
   width: 970px;
 }
 
-@media screen and (min-width: 576px) {
-  .slice {
+@media (max-width: 576px) {
+  .carousel {
     display: none;
     
   }
