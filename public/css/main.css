@@ -120,8 +120,13 @@ img {
 
 @media (max-width: 576px) {
   .carousel {
-    display: none;
-    
+    display: none;   
+  }
+}
+
+@media screen (min-width: 576px) {
+  p {
+    font-size: 30px;
   }
 }
 
