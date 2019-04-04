@@ -118,16 +118,19 @@ img {
   width: 970px;
 }
 
-@media (max-width: 576px) {
+@media screen and (max-width: 576px) {
   .carousel {
     display: none;   
   }
+    p {
+    font-size: 18px;
+  }
 }
 
-@media screen (min-width: 576px) {
-  p {
-    font-size: 30px;
-  }
+@media screen and (min-width: 576px) {
+/*  p {
+    font-size: 3rem;
+  }*/
 }
 
 @media screen and (max-width: 768px) { 
