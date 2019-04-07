@@ -29,7 +29,7 @@ class ContactFormController extends Controller
 
         Mail::to('libor.gess11@gmail.com')->send(new sendContactForm($data));
 
-        return redirect()->back()->with('status', 'Odeslano');
+        return redirect()->back()->with('status', 'Na Váš dotaz bude odpovězeno ihned jakmile to bude možné. Přeji Vám hezký den.');
     }
  
 }

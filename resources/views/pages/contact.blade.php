@@ -9,7 +9,10 @@
 		<div class="row">
 			<div class="col-sm-5 col-md-5 col-lg-5">
 				@if(Session::has('status'))
-					{{Session::get('status')}}	
+					<div class="alert alert-success" role="alert">
+					  	<h4 class="alert-heading">Zpráva byla odeslána!</h4>
+					  	<p>{{ Session::get('status') }}</p>
+					</div>
 				@endif
 				<div class="form-group">
 
