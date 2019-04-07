@@ -27,7 +27,9 @@ class ContactFormController extends Controller
         ];
 
 
-        Mail::to('test@test.cz')->send(new sendContactForm($data));
+        Mail::to('libor.gess11@gmail.com')->send(new sendContactForm($data));
+
+        return redirect()->back()->with('status', 'Odeslano');
     }
  
 }

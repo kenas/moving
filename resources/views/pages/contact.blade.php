@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-sm-5 col-md-5 col-lg-5">
 				@if(Session::has('status'))
-					send
+					{{Session::get('status')}}	
 				@endif
 				<div class="form-group">
 
