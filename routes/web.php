@@ -16,7 +16,7 @@ Route::resource('/articles', 'ArticlesController');
 Route::put('/publish/{id}', 'HomeController@updatePublish')->name('status.publish');
 Route::patch('/article/{id}', 'ArticlesController@update')->name('update.article');
 Route::get('/article/{id}/edit', 'ArticlesController@edit')->name('edit.article');
-Route::delete('article/{id}', 'HomeController@destroy')->name('article.destroy');
+Route::delete('article/{id}', 'ArticlesController@destroy')->name('article.destroy');
 Route::get('/dashboard/categories', 'CategoryController@allCategoryForDashboard')->name('dashboard.categories');
 Route::post('/dashboard/categories/store', 'CategoryController@store')->name('categories.store');
 Route::get('/search', 'HomeController@search');
