@@ -24,6 +24,7 @@ Route::get('/search', 'HomeController@search');
 Route::get('/kategorie', 'CategoryController@getAllCategories');
 Route::get('/kategorie/{slug}', 'CategoryController@index')->name('category.index');
 Route::get('/kategorie/{category}/clanek/{slug}', 'ArticlesController@show')->name('articles.show');
+Route::get('/fotogalerie', 'FotogalerieController@index')->name('fotogalerie');
 Route::get('/tag/{tag}', 'TagController@index')->name('tag.index');
 Route::get('/kontakt', 'ContactFormController@getEmail')->name('getEmail');
 Route::post('/odeslat', 'ContactFormController@sendEmail')->name('sendEmail');

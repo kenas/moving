@@ -42,7 +42,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Fotogalerie</a>
+        <a class="nav-link" href="{{route('fotogalerie')}}">Fotogalerie</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{route('getEmail')}}">Kontakt</a>
