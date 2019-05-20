@@ -9,6 +9,7 @@
 
 	<script type="text/javascript" src="{{asset('js/wa-mediabox.min.js')}}"></script>
 	<link rel="stylesheet" type="text/css" href="{{asset('css/wa-mediabox.min.css')}}" />
+	 @stack('timeLineCss')
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>

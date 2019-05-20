@@ -21,6 +21,11 @@ Route::get('/dashboard/categories', 'CategoryController@allCategoryForDashboard'
 Route::post('/dashboard/categories/store', 'CategoryController@store')->name('categories.store');
 Route::get('/search', 'HomeController@search');
 
+Route::get('/aboutme', function() {
+	return view('pages.aboutme');
+})->name('aboutme');
+
+Route::get('/zkusenosti', 'ExperiencesController@index')->name('experiences');
 Route::get('/kategorie', 'CategoryController@getAllCategories');
 Route::get('/kategorie/{slug}', 'CategoryController@index')->name('category.index');
 Route::get('/kategorie/{category}/clanek/{slug}', 'ArticlesController@show')->name('articles.show');

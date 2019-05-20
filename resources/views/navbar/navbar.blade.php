@@ -8,10 +8,10 @@
         <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">O mně</a>
+        <a class="nav-link" href="{{route('aboutme')}}">O mně</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Historie</a>
+        <a class="nav-link" href="{{route('experiences')}}">Zkušenosti</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="/kategorie" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
