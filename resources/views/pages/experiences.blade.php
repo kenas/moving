@@ -17,15 +17,11 @@
 					@foreach($experiences as $experience)
 						<li>
 							<div class="experience">
-								{{-- <h3>Someting 1</h3> --}}
+								
 								<p>{{$experience->description}}</p>
 							</div>
 							<div class="time">
-								@if($experience->year > 1)
-									<h4>{{$experience->year}}</h4>
-								@else
-									
-								@endif
+								{{$experience->year}}
 							</div>
 						</li>
 					@endforeach
