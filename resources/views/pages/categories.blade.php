@@ -19,7 +19,7 @@
 							</div>
 							<ul class="list-group list-group-flush">
 								@foreach($category->articles->take(3) as $article)
-									<li class="list-group-item">{{ $article->title }}</li>
+									<li class="list-group-item"><a href="{{route('articles.show', ['kategorie' => strtolower($category->slug), 'clanek' => $article->slug])}}">{{ $article->title }}</a></li>
 								@endforeach
 							</ul>
 {{-- 							<div class="card-body">

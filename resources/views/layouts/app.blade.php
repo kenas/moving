@@ -43,6 +43,10 @@
       </a>
 
       <a class="navbar-item">
+        <a class="navbar-item" href="{{route('dashboard.fotogalerie')}}">fotogalerie</a>
+      </a>
+
+      <a class="navbar-item">
         {{ Auth::user()->name }}
         @endguest
       </a>

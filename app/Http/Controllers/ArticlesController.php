@@ -47,7 +47,7 @@ class ArticlesController extends Controller
         $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $tags = Tag::all();
 
-       return view('manage.articles.create', compact('categories', 'tags'));
+        return view('manage.articles.create', compact('categories', 'tags'));
     }
 
     /**
@@ -141,12 +141,12 @@ class ArticlesController extends Controller
 
         $newArticle = new Article;
 
-        $newArticle->title = $request->title;
-        $newArticle->slug = str_slug($request->title);
-        $newArticle->category_id = $request->category_id;
-        $newArticle->author = $request->author;
-        $newArticle->publish = $request->publish;
-        $newArticle->content = $request->content;
+        $newArticle->title         = $request->title;
+        $newArticle->slug          = str_slug($request->title);
+        $newArticle->category_id   = $request->category_id;
+        $newArticle->author        = $request->author;
+        $newArticle->publish       = $request->publish;
+        $newArticle->content       = $request->content;
 
         //Chek if there is a image and if there is ...
         if($request->hasFile('coverImage'))

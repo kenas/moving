@@ -20,6 +20,7 @@ Route::delete('article/{id}', 'ArticlesController@destroy')->name('article.destr
 Route::get('/dashboard/categories', 'CategoryController@allCategoryForDashboard')->name('dashboard.categories');
 Route::post('/dashboard/categories/store', 'CategoryController@store')->name('categories.store');
 Route::get('/search', 'HomeController@search');
+Route::get('/dashboard/fotogalerie', 'FotogalerieController@index')->name('dashboard.fotogalerie');
 
 Route::get('/aboutme', function() {
 	return view('pages.aboutme');

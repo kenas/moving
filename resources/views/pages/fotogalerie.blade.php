@@ -8,7 +8,7 @@
 	<div class="row">
 		@foreach($all as $picture)
 			<div class="col-md-3">
-				<div class="card">
+				<div class="card mb-3">
 					<a href="{{$picture->path}}" data-mediabox="my-gallery-name" data-title="{{$picture->description}}">
 						<img src="{{$picture->path}}" class="card-img-top" alt="...">
 					</a>
