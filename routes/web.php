@@ -21,6 +21,7 @@ Route::get('/dashboard/categories', 'CategoryController@allCategoryForDashboard'
 Route::post('/dashboard/categories/store', 'CategoryController@store')->name('categories.store');
 Route::get('/search', 'HomeController@search');
 Route::get('/dashboard/fotogalerie', 'FotogalerieController@index')->name('dashboard.fotogalerie');
+Route::post('/picture/{id}', 'FotogalerieController@destroy')->name('picture.destroy');
 
 Route::get('/aboutme', function() {
 	return view('pages.aboutme');
@@ -30,7 +31,7 @@ Route::get('/zkusenosti', 'ExperiencesController@index')->name('experiences');
 Route::get('/kategorie', 'CategoryController@getAllCategories');
 Route::get('/kategorie/{slug}', 'CategoryController@index')->name('category.index');
 Route::get('/kategorie/{category}/clanek/{slug}', 'ArticlesController@show')->name('articles.show');
-Route::get('/fotogalerie', 'FotogalerieController@index')->name('fotogalerie');
+Route::get('/fotogalerie', 'FotogalerieController@show')->name('fotogalerie');
 Route::get('/tag/{tag}', 'TagController@index')->name('tag.index');
 Route::get('/kontakt', 'ContactFormController@getEmail')->name('getEmail');
 Route::post('/odeslat', 'ContactFormController@sendEmail')->name('sendEmail');

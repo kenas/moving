@@ -22,13 +22,13 @@
 					{{-- {{ Form::label('subject', 'Predmet', ['class' => 'control-label'])}}
 					{{Form::text('subject', null, ['class' => 'form-control  form-control-lg'])}} --}}
 					<label for="subject"></label>
-					<input type="text" v-model="subject" name="subject" class="form-control form-control-lg {{$errors->has('subject') ? 'border-danger' : '' }} " value="{{ old('subject') }}" placeholder="Předmět">
+					<input type="text" v-model="subject" name="subject" class="form-control form-control-lg {{$errors->has('subject') ? 'border-danger' : '' }} " value="{{ old('subject') }}" placeholder="Předmět" id="subject">
 					@if($errors->has('subject'))
 						<p class="text-danger">{{ $errors->first('subject') }}</p>
 					@endif
 
 					<label for="email"></label>
-					<input type="email" v-model="email" name="email" class="form-control form-control-lg {{$errors->has('email') ? 'border-danger' : '' }}" value="{{ old('email') }}" placeholder="E-mail">
+					<input type="email" v-model="email" name="email" class="form-control form-control-lg {{$errors->has('email') ? 'border-danger' : '' }}" value="{{ old('email') }}" placeholder="E-mail" id="email">
 					@if($errors->has('email'))
 						<p class="text-danger">{{ $errors->first('email') }}</p>
 					@endif

@@ -34,7 +34,7 @@
         <div class="field">
             <div class="control">
                 <label>
-                    <input type="file" name="coverImage[]" multiple>
+                    <input type="file" name="coverImage">
                 </label>
             </div>
         </div>

@@ -8,6 +8,7 @@ use Session;
 use Image;
 use App\Tag;
 use Illuminate\Http\Request;
+use App\Gallery;
 
 class HomeController extends Controller
 {
@@ -18,10 +19,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-       $this->middleware('auth', ['only' => ['search', 'destroy']]);
+       $this->middleware('auth', ['only' => ['search', 'destroy', 'fotogalerie']]);
     }
-
-
 
     public function search(Request $request)
     {
