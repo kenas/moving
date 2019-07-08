@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use Session;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB; 
 use Illuminate\Http\Request;
 //use Symfony\Component\HttpFoundation\Exception\HttpException;
@@ -14,7 +16,7 @@ class CategoryController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['only' => 'allCategoryForDashboard']);
+        $this->middleware('auth', ['only' => 'allCategoryForDashboard', 'store']);
     }
 
     /**
@@ -139,6 +141,16 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Category::findOrFail($id);
+        
+        if($delete->articles()->count() > 0) {
+
+           return ['message_error' => 'This category is linked to an article or articles. Please remove the article or artiles then remove the category.'];
+        } else {
+
+            $delete->delete();
+            return ['message_success' => 'The category was successfully delete.'];
+        }
+        
     }
 }

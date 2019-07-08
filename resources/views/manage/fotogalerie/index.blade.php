@@ -1,71 +1,74 @@
 @extends('layouts.app')
 
+@section('title', 'Manage | Fotogalerie')
 @section('content')
 <div id="app">
-	<div class="container">
-		<div class="columns is-multiline">
-			@foreach($all as $img)
-				<div class="column is-one-quarter">
-					<div class="card">
-					  <div class="card-image">
-					    <figure class="image">
-					    		<button v-on:click="deletePicture({{json_encode($img)}})" type="submit" class="card-footer-item delete" style="position: absolute; top: 15px; right: 15px; z-index: 1;"></button>
-					    	<img src="{{$img->path}}" @mouseover="hoverIn($event, {{json_encode($img)}})" @mouseout="hoverOut($event)">
-					    </figure>
-					  </div>
-					  <div class="card-content">
-					    <div class="media">
-					      <div class="media-left">
+  <div class="container">
+    <div class="columns is-multiline">
 
-					      </div>
-					    </div>
 
-					    <div class="content">
-					  		{{$img->description}}
-					    </div>
-					  </div>
-					</div>
-				</div>
-		@endforeach
-		</div>
-	</div>
+
+        <div v-for="(picture, index) in allPictures" class="column is-one-quarter">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                  <button v-on:click="deletePicture(picture)" type="submit" class="delete" style="position: absolute; top: 15px; right: 15px; z-index: 1;"></button>
+                <img v-bind:src="picture.path">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+
+                </div>
+              </div>
+
+              <div class="content">
+               @{{picture.description}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 
 <script type="text/javascript">
     const  app = new Vue({
 
-    	el: '#app',
-    	data: {
-    		id: null,
-    		alertConfirmDelete: false,
-    		deleteCross: false,
-    	},
+      el: '#app',
+      data: {
+        id: null,
+        alertConfirmDelete: false,
+        deleteCross: false,
+        allPictures: {!!json_encode($all)!!},
+      },
 
-		methods: {
+    methods: {
 
-			getId: function (img) {
+      getId: function (img) {
 
-				event.preventDefault();
-				this.id = img.id;
-			},
+        event.preventDefault();
+        this.id = img.id;
+      },
 
-			deletePicture: function(img) {
-            this.alertConfirmDelete = confirm('Remove the picture? '+img.description+' ');
+      deletePicture: function(picture) {
+            this.alertConfirmDelete = confirm('Remove the picture? '+picture.description+' ');
             
               if(this.alertConfirmDelete) {
                 //do axios 
                 const confirm = this;
-                axios.post('/picture/' + img.id,  {
-                  id: img.id
+                axios.post('/picture/' + picture.id,  {
+                  id: picture.id
               })
               .then(function (response) {
                
                 if(response.status === 200 && response.statusText === 'OK') {
                   
-                   	setTimeout(function(){ 
-                		window.location.reload(true);
-              		}, 500);
+                    setTimeout(function(){ 
+                    window.location.reload(true);
+                  }, 500);
                 }
               })
               .catch(function (error) {
@@ -75,28 +78,32 @@
                 //do nothing
               }
 
-          	},
+            },
 
-          	hoverIn: function (event, img) {
-          		this.id = img.id;
-          		this.deleteCross = true;
+            testMethod: function () {
+              console.log('yes');
+            },
 
-          	},
+            hoverIn: function (event, img) {
+              this.id = img.id;
+              this.deleteCross = true;
 
-          	hoverOut: function (event) {
-          		this.deleteCross = false;
-          	},
+            },
 
-		},
+            hoverOut: function (event) {
+              this.deleteCross = false;
+            },
 
-		watch: {
+    },
 
-			id: function () {
-			},
-			deleteCross: function () {
+    watch: {
 
-			}
-		}
+      id: function () {
+      },
+      deleteCross: function () {
+
+      }
+    }
     });
 </script>
 @endsection

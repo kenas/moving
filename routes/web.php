@@ -19,6 +19,7 @@ Route::get('/article/{id}/edit', 'ArticlesController@edit')->name('edit.article'
 Route::delete('article/{id}', 'ArticlesController@destroy')->name('article.destroy');
 Route::get('/dashboard/categories', 'CategoryController@allCategoryForDashboard')->name('dashboard.categories');
 Route::post('/dashboard/categories/store', 'CategoryController@store')->name('categories.store');
+Route::post('category/{id}', 'CategoryController@destroy')->name('category.destroy');
 Route::get('/search', 'HomeController@search');
 Route::get('/dashboard/fotogalerie', 'FotogalerieController@index')->name('dashboard.fotogalerie');
 Route::post('/picture/{id}', 'FotogalerieController@destroy')->name('picture.destroy');
