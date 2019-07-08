@@ -5,9 +5,6 @@
 <div id="app">
   <div class="container">
     <div class="columns is-multiline">
-
-
-
         <div v-for="(picture, index) in allPictures" class="column is-one-quarter">
           <div class="card">
             <div class="card-image">
@@ -17,19 +14,12 @@
               </figure>
             </div>
             <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-
-                </div>
-              </div>
-
               <div class="content">
                @{{picture.description}}
               </div>
             </div>
           </div>
         </div>
-
     </div>
   </div>
 </div>
@@ -39,19 +29,12 @@
 
       el: '#app',
       data: {
-        id: null,
         alertConfirmDelete: false,
         deleteCross: false,
         allPictures: {!!json_encode($all)!!},
       },
 
     methods: {
-
-      getId: function (img) {
-
-        event.preventDefault();
-        this.id = img.id;
-      },
 
       deletePicture: function(picture) {
             this.alertConfirmDelete = confirm('Remove the picture? '+picture.description+' ');
@@ -78,22 +61,7 @@
                 //do nothing
               }
 
-            },
-
-            testMethod: function () {
-              console.log('yes');
-            },
-
-            hoverIn: function (event, img) {
-              this.id = img.id;
-              this.deleteCross = true;
-
-            },
-
-            hoverOut: function (event) {
-              this.deleteCross = false;
-            },
-
+            }
     },
 
     watch: {
