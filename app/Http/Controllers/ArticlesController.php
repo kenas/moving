@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 use App\Article;
 use App\Category;
-use Session;
-use Image;
+use Session;    
+use Intervention\Image\Facades\Image as interventionImage;
 use App\Tag;
+use App\Image;
 use App\Mail\sendContactForm;
-use Illuminate\Support\Facades\Storage;
 
 
 class ArticlesController extends Controller
@@ -131,7 +131,7 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        //dd($request->coverImage);
         $this->validate(request(), [
             'title'         => 'required|unique:articles|max:255',
             'category_id'   => 'required|numeric',
@@ -149,23 +149,47 @@ class ArticlesController extends Controller
         $newArticle->content       = $request->content;
 
         //Chek if there is a image and if there is ...
-        if($request->hasFile('coverImage'))
-        {
-            $coverImage = $request->file('coverImage');
-            $renameImage = time().'.'.$coverImage->getClientOriginalExtension();
+        if($request->hasFile('images')) {
 
-            $location = public_path('images/'. $renameImage);
+            $images = $request->file('images');
 
-            Image::make($coverImage)->resize(180, 130)->save($location);
+            foreach ($images as $key => $file) {
+               // dd($file);
+                //IMG_0230.jpg
+                $getOriginalName = $file->getClientOriginalName();
 
-            $newArticle->cover_picture = $renameImage;
+                //IMG_0230
+                $fileName = pathinfo($getOriginalName, PATHINFO_FILENAME);
+
+                // jpg
+                $extention = $file->getClientOriginalExtension();
+
+                //IMG_02301562248175.jpg
+                $fileNameToStore = $key.time().'.'.$extention;
+                
+                $test = interventionImage::make($file)->resize(180, 130)->save();
+
+                //public/images/02301562248175.jpg
+                $file->move(public_path() .'/images/', strtolower($fileNameToStore));
+
+
+                $newImages = new Image;
+                $newImages->path =  strtolower($fileNameToStore);
+                $newImages->title = 'Test title';
+                $newImages->save();
+                
+
+                $newArticle->save();
+                $newArticle->images()->attach($newImages);
+            }
         }
 
-        $newArticle->save();
+   
 
+        //$newArticle->images()->sync($newImages->id);
         $newArticle->tags()->sync($request->tags, false);
  
-       return redirect('/dashboard')->with('status', 'The article was successfully save into database, please check if is publish.');
+       //return redirect('/dashboard')->with('status', 'The article was successfully save into database, please check if is publish.');
 
     }
 

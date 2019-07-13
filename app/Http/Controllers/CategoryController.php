@@ -145,7 +145,7 @@ class CategoryController extends Controller
         
         if($delete->articles()->count() > 0) {
 
-           return ['message_error' => 'This category is linked to an article or articles. Please remove the article or artiles then remove the category.'];
+           return ['message_error' => 'This category is linked to an article or more. Please remove the article or artiles then remove the category.'];
         } else {
 
             $delete->delete();

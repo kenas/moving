@@ -35,7 +35,7 @@
 					{{-- {{ Form::label('email', 'Vas email', ['class' => 'control-label'])}}
 					{{Form::email('email', null, ['class' => 'form-control  form-control-lg', 'placeholder' => '@'])}} --}}
 					<label for="content"></label>
-					<textarea v-model="content" name="content" class="form-control form-control-lg {{$errors->has('content') ? 'border-danger' : '' }}" rows="8" placeholder="Zde napište vaši zprávu">{{ old('content') }}</textarea>
+					<textarea v-model="content" name="content" class="form-control form-control-lg {{$errors->has('content') ? 'border-danger' : '' }}" rows="8" placeholder="Zde napište Vaši zprávu">{{ old('content') }}</textarea>
 					@if($errors->has('content'))
 						<p class="text-danger">{{ $errors->first('content') }}</p>
 					@endif

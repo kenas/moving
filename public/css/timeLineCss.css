@@ -84,7 +84,7 @@
 .timeline ul li:nth-child(odd) .time {
 	position: absolute;
 	top: 12px;
-	right: -115px;
+	right: -69px;
 	margin: 0;
 	padding: 8px 16px;
 	background: #007bff;
@@ -95,8 +95,8 @@
 
 .timeline ul li:nth-child(even) .time {
 	position: absolute;
-	top: 12px;
-	left: -115px;
+	top: 13px;
+	left: -69px;
 	margin: 0;
 	padding: 8px 16px;
 	background: rgba(0,123,255);

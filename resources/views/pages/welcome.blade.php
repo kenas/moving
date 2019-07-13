@@ -48,9 +48,11 @@
 
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="pt-4"></div>
-				@if($article->cover_picture)
-					<img src="{{ $article->cover_picture }}" class="img-fluid rounded float-left" style="padding: 10px; filter: none;">
-				@endif
+					@if($article->images)
+						@foreach($article->images->take(1) as $img)
+							<img src="{{ asset('images/'. $img->path)}}" class="mr-3 img-fluid rounded float-left">
+						@endforeach
+					@endif
 				<h1><a href="{{ route('articles.show', ['kategorie' => strtolower($article->category->slug), 'clanek' => $article->slug])}}">{{$article->title}}</a></h1>
 				<i class="far fa-clock"></i> <small class="text-muted">{{$article->created_at->diffForHumans()}} </small>{{-- | autor: {{$article->author}} | Kategorie </small><a href="{{ route('category.index', strtolower($article->category->name))}}"><span class="badge badge-light">{{$article->category->name}}</span></a>
  --}}				<p>{!!str_limit($article->content, 300)!!}</p>

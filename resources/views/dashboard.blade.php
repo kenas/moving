@@ -3,7 +3,7 @@
 @section('title', 'Moving Well - Dashboard')
 
 @section('content')
-<div id="app">
+<div id="app" style="margin-top: 35px;">
 
 <div class="container is-fluid">
 
@@ -40,7 +40,6 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Cover picture</th>
                             <th>Category</th>
                             <th>Publish</th>
                             <th>Author</th>
@@ -56,7 +55,6 @@
                         <tr>
                             <th scope="row">{{ $article->id}}</th>
                             <td>{{ str_limit($article->title, 30)}}</td>
-                            <td><strong>{{ ($article->cover_picture) ? 'Yes' : 'No' }}</strong></td>
                             <td><span class="tag is-light is-medium">{{ $article->category->name }}</span></td>
                             <td>
 
@@ -65,8 +63,6 @@
                                     @csrf
                                       @method('PUT')
                                         <button v-on:click="changePublish({{json_encode($article)}}, $event)"  type="submit" class="button is-success">Active</button>
-                                    
-
                                 @else 
                                   
                                     @csrf
@@ -78,7 +74,7 @@
                                 </td>
                                 <td>{{ $article->author}}</td>
                                 <td>{{ date("d F Y, g:i a", strtotime($article->created_at)) }}</td>
-                                <td><a href="{{route('articles.show', ['kategorie'=>strtolower($article->category->name), 'clanek'=>strtolower($article->slug)])}}" target="_blank" class="button is-link">View</a></td>
+                                <td><a href="{{route('articles.show', ['kategorie'=>strtolower($article->category->slug), 'clanek'=>strtolower($article->slug)])}}" target="_blank" class="button is-link">View</a></td>
                                 <td>
                                     <form action="{{route('edit.article', $article->id)}}">
                                         <button class="button is-info">Edit</button>

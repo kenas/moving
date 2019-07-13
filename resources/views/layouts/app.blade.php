@@ -44,6 +44,10 @@
       </a>
 
       <a class="navbar-item">
+        <a class="navbar-item" href="{{route('dashboard.experiences')}}">Experiences</a>
+      </a>
+
+      <a class="navbar-item">
         <a class="navbar-item" href="{{route('dashboard.fotogalerie')}}">fotogalerie</a>
       </a>
 
@@ -77,6 +81,7 @@
   </div>
 </nav>
 
+  
   @yield('content')
 
 

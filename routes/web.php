@@ -1,6 +1,7 @@
 <?php
 
 use App\Article;
+use App\Experience;
 
 Auth::routes();
 
@@ -22,13 +23,22 @@ Route::post('/dashboard/categories/store', 'CategoryController@store')->name('ca
 Route::post('category/{id}', 'CategoryController@destroy')->name('category.destroy');
 Route::get('/search', 'HomeController@search');
 Route::get('/dashboard/fotogalerie', 'FotogalerieController@index')->name('dashboard.fotogalerie');
+Route::get('/dashboard/experiences', 'ExperiencesController@index')->name('dashboard.experiences');
+Route::post('dashboard/experiences/store/', 'ExperiencesController@store')->name('dashboard.experiences.store');
 Route::post('/picture/{id}', 'FotogalerieController@destroy')->name('picture.destroy');
 
 Route::get('/aboutme', function() {
 	return view('pages.aboutme');
 })->name('aboutme');
 
-Route::get('/zkusenosti', 'ExperiencesController@index')->name('experiences');
+Route::get('/zkusenosti', function() {
+	
+	$experiences = Experience::orderBy('year', 'DESC')->get();
+
+    return view('pages.experiences', compact('experiences'));
+
+})->name('experiences');
+
 Route::get('/kategorie', 'CategoryController@getAllCategories');
 Route::get('/kategorie/{slug}', 'CategoryController@index')->name('category.index');
 Route::get('/kategorie/{category}/clanek/{slug}', 'ArticlesController@show')->name('articles.show');

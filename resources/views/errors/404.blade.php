@@ -18,7 +18,7 @@
 			  	@foreach($articles as $article)
 					{{-- {{ dd($article->category->name) }} --}}
 			  		<li class="list-group-item">
-			  			<a href="{{route('articles.show', ['kategorie' => 'sdsdsd', 'clanek' => 'sddsds'])}}">{{$article->title}}</a>
+			  			<a href="{{route('articles.show', ['kategorie' => $article->category->slug, 'clanek' => $article->slug])}}">{{$article->title}}</a>
 			  			{{-- <a href="{{route('category.index', strtolower($article->category->slug))}}"><span class="badge badge badge-info">{{$article->category->name}}</a></span> --}}
 			  		</li>
 

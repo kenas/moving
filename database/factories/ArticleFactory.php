@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Article::class, function (Faker $faker) {
     return [
-    	'cover_picture' =>	$faker->imageUrl($width = 350, $height = 250, 'nature'), // 'http://lorempixel.com/640/480/'
+    	// 'cover_picture' =>	$faker->imageUrl($width = 350, $height = 250, 'nature'), // 'http://lorempixel.com/640/480/'
         'title' 		=> 	$faker->sentence($nbWords = 5, $variableNbWords = true),
         'slug' 			=>	$faker->slug,
         'content' 		=>	$faker->text($maxNbChars = 2000),

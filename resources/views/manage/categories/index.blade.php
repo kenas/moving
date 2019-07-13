@@ -3,11 +3,10 @@
 @section('title', 'Manage | Categories')
 @section('content')
 
-<div id="app">
+<div id="app" style="margin-top: 35px;">
 	<div class="container">
 		<div class="columns">
 			
-			<!-- <div class="mt-5"></div> -->
 			<div class="column is-three-fifths">
 				<div  v-show="msg" v-bind:class="[activeClass , errorClass]">@{{msg}}</div>
 				<table class="table is-fullwidth">

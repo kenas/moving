@@ -7,6 +7,12 @@ use App\Experience;
 
 class ExperiencesController extends Controller
 {
+
+    public function __construct() {
+
+        $this->middleware('auth', ['only' => ['index', 'create', 'edit', 'update', 'store', 'delete']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +20,9 @@ class ExperiencesController extends Controller
      */
     public function index()
     {
-        $experiences = Experience::orderBy('year', 'DESC')->get();
+        $experiences = Experience::selectRaw('count(*) AS cnt, year')->groupBy('year')->orderBy('year', 'DESC')->get();
 
-        return view('pages.experiences', compact('experiences'));
+        return view('manage.experiences.index', compact('experiences'));
     }
 
     /**
@@ -37,7 +43,17 @@ class ExperiencesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $experience = $request->validate([
+
+            'year' => 'required',
+            'description' => 'required'
+        ]);
+
+        Experience::create($request->all());
+
+
+        return ['message' => 'Nová Zkušenost byla úspěšně uložena.'];
+
     }
 
     /**
