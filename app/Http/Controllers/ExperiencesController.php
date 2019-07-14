@@ -10,7 +10,7 @@ class ExperiencesController extends Controller
 
     public function __construct() {
 
-        $this->middleware('auth', ['only' => ['index', 'create', 'edit', 'update', 'store', 'delete']]);
+        $this->middleware('auth', ['only' => ['index', 'create', 'edit', 'update', 'store', 'destroy']]);
     }
 
     /**
@@ -20,7 +20,13 @@ class ExperiencesController extends Controller
      */
     public function index()
     {
-        $experiences = Experience::selectRaw('count(*) AS cnt, year')->groupBy('year')->orderBy('year', 'DESC')->get();
+        $experiences = Experience::orderBy('year', 'DESC')->paginate(5);
+        // $experiences = Experience::selectRaw('count(*) AS cnt, year')->groupBy('year')->orderBy('year', 'DESC')->get(['year', 'description']);
+
+        // $experiences = \DB::table('experiences')->select('year', \DB::raw('count(*) as total'))
+        //     ->groupBy('year')
+        //     ->orderBy('year', 'DESC')
+        //     ->get();
 
         return view('manage.experiences.index', compact('experiences'));
     }
@@ -98,6 +104,10 @@ class ExperiencesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Experience::findOrFail($id);
+
+        $delete->delete();
+
+        return ['message' => 'Zkušenost byla úspěšně vymazána.'];
     }
 }

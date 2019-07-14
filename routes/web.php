@@ -20,11 +20,12 @@ Route::get('/article/{id}/edit', 'ArticlesController@edit')->name('edit.article'
 Route::delete('article/{id}', 'ArticlesController@destroy')->name('article.destroy');
 Route::get('/dashboard/categories', 'CategoryController@allCategoryForDashboard')->name('dashboard.categories');
 Route::post('/dashboard/categories/store', 'CategoryController@store')->name('categories.store');
-Route::post('category/{id}', 'CategoryController@destroy')->name('category.destroy');
+Route::post('/category/{id}', 'CategoryController@destroy')->name('category.destroy');
 Route::get('/search', 'HomeController@search');
 Route::get('/dashboard/fotogalerie', 'FotogalerieController@index')->name('dashboard.fotogalerie');
 Route::get('/dashboard/experiences', 'ExperiencesController@index')->name('dashboard.experiences');
 Route::post('dashboard/experiences/store/', 'ExperiencesController@store')->name('dashboard.experiences.store');
+Route::post('/experiences/{id}', 'ExperiencesController@destroy')->name('experiences.destroy');
 Route::post('/picture/{id}', 'FotogalerieController@destroy')->name('picture.destroy');
 
 Route::get('/aboutme', function() {

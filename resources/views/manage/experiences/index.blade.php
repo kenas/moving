@@ -4,16 +4,17 @@
 @section('content')
 <div id="app" style="margin-top: 35px;">
 	<div class="container">
-		<div  v-show="successful" class="notification is-success">@{{successful}}</div>
+		<div  v-show="successful" class="notification is-success">@{{successful}}
+			<span v-on:click="closeSuccessNotification()" class="delete"></span>
+		</div>
 		<div class="columns">
 			<div class="column is-three-fifths">
-				<h5>Experiences</h5>
 				<table class="table">
 
 					<thead>
 						<tr>
 							<th>Year</th>
-							<th>Count</th>
+							<th>Content</th>
 							<th>Edit</th>
 							<th>Delete</th>
 						</tr>
@@ -23,21 +24,22 @@
 						<tr>
 							<th scope="row">{{$experience->year}}</th>
 
-							<td>{{$experience->cnt}}</td>
-							<td><button class="button is-info">edit</button></td>
-							<td><span class="delete"></span></td>
+							<td>{{$experience->description}}</td>
+							
+							<td><button v-on:click="editButtonClicked" class="button is-info">edit {{$experience->id}}</button></td>
+							<td><span v-on:click="deleteExperience({{json_decode($experience->id)}})" class="delete"></span></td>
 						</tr>
 						@endforeach
 					</tbody>
 				</table>
+					{{$experiences->links()}}
 			</div>
 
 			<div class="column 100%">
-				<h5>Add experiences</h5>
-				
+			
 				<div class="field">
 					<div class="control">
-						<input v-model="year" type="number" name="year" placeholder="{{date('Y')}}" class="input is-medium">
+						<input v-model="year" type="number" name="year" placeholder="Year of your experience, example: {{date('Y')}}" class="input is-medium">
 					</div>
 				</div>
 
@@ -57,9 +59,10 @@
     const  app = new Vue({
     	el: '#app',
     	data: {
+    		alertConfirmDelete: false,
     		year: null,
     		description: null,
-    		successful: false
+    		successful: false,
     	},
 
     	methods: {
@@ -74,13 +77,53 @@
     			.then(function (response) {
 
     				if(response.status === 200 && response.statusText === 'OK') {
+
     					confirm.successful = response.data.message;
+
+    					//clean up all filds
+    					confirm.description = null;
+    					confirm.year = null;
+    				}
+    			})
+    			.catch(function (error) {
+    				console.log(error);
+    			});
+    		},
+
+    		closeSuccessNotification: function () {
+
+    			this.successful = false;
+    		},
+
+    		editButtonClicked: function (event) {
+
+    			const editInout = event.target;
+    			const placeWhereInputCreate = editInout.parentNode.previousElementSibling;
+    		},
+
+    		deleteExperience: function (id) {
+    			console.log(id);
+    			
+    			this.alertConfirmDelete = confirm('Remove the experience? '+id+'');
+
+    			const getObject = this;
+    			if(this.alertConfirmDelete) {
+    			axios.post('/experiences/' +id, {
+    				id: id
+    			})
+    			.then(function (response) {
+
+    				if(response.status === 200 && response.statusText === 'OK') {
+
+    					getObject.successful = response.data.message;
+    					
     				}
     			})
     			.catch(function (error) {
     				console.log(error);
     			});
     		}
+    	}
     	}
     });
 </script>
