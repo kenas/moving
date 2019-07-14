@@ -519,7 +519,7 @@ babel-plugin-transform-es2015-block-scoping@^6.23.0:
     babel-template "^6.26.0"
     babel-traverse "^6.26.0"
     babel-types "^6.26.0"
-    lodash "^4.17.4"
+    lodash "~> 4.17.13"
 
 babel-plugin-transform-es2015-classes@^6.23.0:
   version "6.24.1"
