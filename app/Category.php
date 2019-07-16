@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+
+    public $fillable = ['name', 'slug'];
+    
     //Category has many articles
     public function articles ()
     {

@@ -58,7 +58,7 @@ class ExperiencesController extends Controller
         Experience::create($request->all());
 
 
-        return ['message' => 'Nová Zkušenost byla úspěšně uložena.'];
+        return ['message' => 'Nová zkušenost byla úspěšně uložena.'];
 
     }
 

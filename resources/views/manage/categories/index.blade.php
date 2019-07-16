@@ -89,6 +89,10 @@
 
                 			confirm.msg = confirm.msg.message_success;
                 			confirm.activeClass  = 'notification is-success';
+
+                			setTimeout(function(){ 
+                				window.location.reload(true);
+                			}, 2100);
                 		}
                 	}
                 })

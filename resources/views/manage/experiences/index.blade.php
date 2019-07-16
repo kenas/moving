@@ -5,7 +5,6 @@
 <div id="app" style="margin-top: 35px;">
 	<div class="container">
 		<div  v-show="successful" class="notification is-success">@{{successful}}
-			<span v-on:click="closeSuccessNotification()" class="delete"></span>
 		</div>
 		<div class="columns">
 			<div class="column is-three-fifths">
@@ -26,8 +25,8 @@
 
 							<td>{{$experience->description}}</td>
 							
-							<td><button v-on:click="editButtonClicked" class="button is-info">edit {{$experience->id}}</button></td>
-							<td><span v-on:click="deleteExperience({{json_decode($experience->id)}})" class="delete"></span></td>
+							<td><button v-on:click="editButtonClicked" class="button is-info">edit</button></td>
+							<td><span v-on:click="deleteExperience({{json_encode($experience)}})" class="delete"></span></td>
 						</tr>
 						@endforeach
 					</tbody>
@@ -83,6 +82,10 @@
     					//clean up all filds
     					confirm.description = null;
     					confirm.year = null;
+
+    					setTimeout(function(){ 
+    						window.location.reload(true);
+    					}, 2100);
     				}
     			})
     			.catch(function (error) {
@@ -90,32 +93,32 @@
     			});
     		},
 
-    		closeSuccessNotification: function () {
-
-    			this.successful = false;
-    		},
-
     		editButtonClicked: function (event) {
 
     			const editInout = event.target;
     			const placeWhereInputCreate = editInout.parentNode.previousElementSibling;
+
+    			
     		},
 
-    		deleteExperience: function (id) {
-    			console.log(id);
-    			
-    			this.alertConfirmDelete = confirm('Remove the experience? '+id+'');
+    		deleteExperience: function (experience) {
+
+    			this.alertConfirmDelete = confirm('Remove the experience? '+experience.description+'');
 
     			const getObject = this;
     			if(this.alertConfirmDelete) {
-    			axios.post('/experiences/' +id, {
-    				id: id
+    			axios.post('/experiences/' +experience.id, {
+    				id: experience.id
     			})
     			.then(function (response) {
 
     				if(response.status === 200 && response.statusText === 'OK') {
 
     					getObject.successful = response.data.message;
+
+    					setTimeout(function(){ 
+    						window.location.reload(true);
+    					}, 2100);
     					
     				}
     			})

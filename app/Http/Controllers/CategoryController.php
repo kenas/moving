@@ -28,19 +28,17 @@ class CategoryController extends Controller
     {
         //return $slug;
         $category = Category::where('slug', $slug)->firstOrFail();
-
         //dd($category->name);
         $categories = Category::orderBy('name', 'ASC')->get();
-
+        
         $articles = Article::where('category_id',  '=', $category->id)
             ->where('publish', 1)
             ->orderBy('created_at', 'DESC')
             ->simplePaginate(3);
             
         $title = $category->name;
-
         
-        return view('pages.category', compact('articles', 'categories', 'title'));
+        return view('pages.category', compact('articles', 'categories', 'title'));  
   
     }
 
@@ -83,18 +81,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-       //return $request;
-        $validateData = $request->validate([
+       
+        $request->validate([
 
             'category'  => 'required',
             'slug'      => 'required|unique:categories'
         ]);
 
-        $newCategory = new Category;
-
-        $newCategory->name = $request->category;
-        $newCategory->slug = str_slug($request->slug);
-        $newCategory->save();
+       Category::create([
+            'name' => $request->category,
+            'slug' => str_slug($request->slug)
+       ]);
 
         return back();
     }
@@ -105,9 +102,15 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
+           
+            $category = Category::where('slug', $slug)->get();
 
+            // foreach ($category as $key => $value) {
+            //     return $value->articles;
+            // }
+            return view('pages.category', compact('category'));
     }
 
     /**

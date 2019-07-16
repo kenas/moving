@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['errors.404', 'errors::404'], function($view)
         {
             $view->with(
-                'articles', Article::latest()->paginate(5)
+                'articles', Article::where('publish', 1)->latest()->paginate(5)
             );
         });
 

@@ -154,7 +154,7 @@ class ArticlesController extends Controller
             $images = $request->file('images');
 
             foreach ($images as $key => $file) {
-               // dd($file);
+
                 //IMG_0230.jpg
                 $getOriginalName = $file->getClientOriginalName();
 
@@ -164,18 +164,22 @@ class ArticlesController extends Controller
                 // jpg
                 $extention = $file->getClientOriginalExtension();
 
-                //IMG_02301562248175.jpg
+                //02301562248175.jpg, 
                 $fileNameToStore = $key.time().'.'.$extention;
-                
-                $test = interventionImage::make($file)->resize(180, 130)->save();
 
-                //public/images/02301562248175.jpg
-                $file->move(public_path() .'/images/', strtolower($fileNameToStore));
+                //resize and store big image for artile
+                interventionImage::make($file)->resize(800, null, function($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path().'/images/'.strtolower($fileNameToStore));
 
-
+                //resize and store small images as a thumbnail
+                interventionImage::make($file)->resize(375, null, function($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path().'/images/thumbnail/'.strtolower($fileNameToStore));
+          
                 $newImages = new Image;
                 $newImages->path =  strtolower($fileNameToStore);
-                $newImages->title = 'Test title';
+                $newImages->title = $request->title;
                 $newImages->save();
                 
 
@@ -184,12 +188,10 @@ class ArticlesController extends Controller
             }
         }
 
-   
-
         //$newArticle->images()->sync($newImages->id);
         $newArticle->tags()->sync($request->tags, false);
  
-       //return redirect('/dashboard')->with('status', 'The article was successfully save into database, please check if is publish.');
+       return redirect('/dashboard')->with('status', 'Článk byl úspěšně uložen do databáze.');
 
     }
 
