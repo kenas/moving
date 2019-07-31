@@ -3,7 +3,32 @@
 @section('title', 'Manage | Experiences')
 @section('content')
 <div id="app" style="margin-top: 35px;">
-	<div class="container">
+    <div class="modal "v-bind:class="[ModalEdit ? 'is-active' : '']">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Edit your experince</p>
+          <button v-on:click="closeModalForEdit" class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+            <div class="field">
+                <div class="control">
+                    <input v-model="year" type="number" name="year" class="input is-medium">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <textarea name="description" v-model="description" class="textarea" rows="10" ></textarea>
+                </div>
+            </div>
+      </section>
+      <footer class="modal-card-foot">
+          <button v-on:click="saveUpdateExperiences()" class="button is-success">Save changes</button>
+          <button v-on:click="closeModalForEdit" class="button">Cancel</button>
+      </footer>
+  </div>
+</div>
+	<div class="container is-fluid">
 		<div  v-show="successful" class="notification is-success">@{{successful}}
 		</div>
 		<div class="columns">
@@ -25,7 +50,7 @@
 
 							<td>{{$experience->description}}</td>
 							
-							<td><button v-on:click="editButtonClicked" class="button is-info">edit</button></td>
+							<td><button v-on:click="editButtonClicked({{json_encode($experience)}})" class="button is-info">edit</button></td>
 							<td><span v-on:click="deleteExperience({{json_encode($experience)}})" class="delete"></span></td>
 						</tr>
 						@endforeach
@@ -60,8 +85,12 @@
     	data: {
     		alertConfirmDelete: false,
     		year: null,
+            id: null,
     		description: null,
     		successful: false,
+            experienceUpdate: [],
+            editButton: false,
+            ModalEdit: false,
     	},
 
     	methods: {
@@ -93,13 +122,42 @@
     			});
     		},
 
-    		editButtonClicked: function (event) {
+    		editButtonClicked: function (experience) {
 
-    			const editInout = event.target;
-    			const placeWhereInputCreate = editInout.parentNode.previousElementSibling;
+                this.ModalEdit = true;
 
-    			
+                this.description = experience.description;
+                this.year = experience.year;
+                this.id = experience.id;        	
     		},
+
+            saveUpdateExperiences: function () {
+             
+                const getObject = this;
+                axios.post('/dashboard/experiences/update/' +this.id, {
+                    id: this.id,
+                    year: this.year,
+                    description: this.description
+                })
+                .then(function (response) {
+
+                    if(response.status === 200 && response.statusText === 'OK') {
+
+                        getObject.successful = response.data.message;
+                        getObject.year = null;
+                        getObject.description = null;
+                        getObject.ModalEdit = false;
+                        
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
+
+            closeModalForEdit: function () {
+                this.ModalEdit = false;
+            },
 
     		deleteExperience: function (experience) {
 
@@ -107,7 +165,7 @@
 
     			const getObject = this;
     			if(this.alertConfirmDelete) {
-    			axios.post('/experiences/' +experience.id, {
+    			axios.post('/dashboard/experiences/destroy/' +experience.id, {
     				id: experience.id
     			})
     			.then(function (response) {
