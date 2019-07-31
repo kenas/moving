@@ -49,6 +49,7 @@ class ExperiencesController extends Controller
      */
     public function store(Request $request)
     {
+        var_dump($request->description);
         $experience = $request->validate([
 
             'year' => 'required',
@@ -60,6 +61,7 @@ class ExperiencesController extends Controller
 
         return ['message' => 'Nová zkušenost byla úspěšně uložena.'];
 
+        return back();
     }
 
     /**
@@ -91,9 +93,17 @@ class ExperiencesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+        $update = Experience::findOrFail($request->id);
+        var_dump($update->year);
+        $update->year = $request->year;
+        $update->description = $request->description;
+
+        $update->save();
+
+        return back();
     }
 
     /**
