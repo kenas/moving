@@ -157,6 +157,14 @@
 
             closeModalForEdit: function () {
                 this.ModalEdit = false;
+                this.cleanUpAllproprties();
+
+            },
+
+            cleanUpAllproprties: function () {
+                this.year = null;
+                this.description = null;
+                this.id = null;
             },
 
     		deleteExperience: function (experience) {
