@@ -28,7 +28,7 @@
 			<div class="field">
 				<div class="control">
 					<label>
-						<input type="file" name="coverImage">
+						<input type="file" name="images[]">
 					</label>
 				</div>
 			</div>

@@ -25,8 +25,11 @@ Route::get('/search', 'HomeController@search');
 Route::get('/dashboard/fotogalerie', 'FotogalerieController@index')->name('dashboard.fotogalerie');
 Route::get('/dashboard/experiences', 'ExperiencesController@index')->name('dashboard.experiences');
 Route::post('dashboard/experiences/store/', 'ExperiencesController@store')->name('dashboard.experiences.store');
-Route::post('/experiences/{id}', 'ExperiencesController@destroy')->name('experiences.destroy');
-Route::post('/picture/{id}', 'FotogalerieController@destroy')->name('picture.destroy');
+Route::post('/dashboard/experiences/destroy/{id}', 'ExperiencesController@destroy')->name('experiences.destroy');
+
+Route::post('/dashboard/experiences/update/{id}', 'ExperiencesController@update')->name('experiences.update');
+Route::post('/dashboard/fotogalerie/store/', 'FotogalerieController@store')->name('dashboard.fotogalerie.store');
+Route::post('/dashboard/fotogalerie/{id}', 'FotogalerieController@destroy')->name('dashboard.fotogalerie.destroy');
 
 Route::get('/aboutme', function() {
 	return view('pages.aboutme');

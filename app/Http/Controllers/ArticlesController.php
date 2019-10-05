@@ -93,21 +93,62 @@ class ArticlesController extends Controller
 
         $update = Article::findOrFail($id);
 
-        if($request->hasFile('coverImage')) {
 
-            $coverImage = $request->file('coverImage');
-            $renameImage = time().'.'.$coverImage->getClientOriginalExtension();
+        //Chek if there is a image and if there is ...
+        if($request->hasFile('images')) {
 
-            $location = public_path('images/'. $renameImage);
+            $images = $request->file('images');
 
-            Image::make($coverImage)->resize(180, 130)->save($location);
+            foreach ($images as $key => $file) {
 
-            //delete the old cover picture from the images storage
-            $oldImage = $update->cover_picture;
-            Storage::delete($oldImage);
+                //for example IMG_0230.jpg
+                $getOriginalName = $file->getClientOriginalName();
 
-            $update->cover_picture = $renameImage;
+                //IMG_0230
+                $fileName = pathinfo($getOriginalName, PATHINFO_FILENAME);
+
+                // jpg
+                $extention = $file->getClientOriginalExtension();
+
+                //02301562248175.jpg, 
+                $fileNameToStore = $key.time().'.'.$extention;
+
+                //resize and store big image for artile
+                interventionImage::make($file)->resize(800, null, function($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path().'/images/'.strtolower($fileNameToStore));
+
+                //resize and store small images as a thumbnail
+                interventionImage::make($file)->resize(375, null, function($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path().'/images/thumbnail/'.strtolower($fileNameToStore));
+          
+                $newImages = new Image;
+                $newImages->path =  strtolower($fileNameToStore);
+                $newImages->title = $request->title;
+                $newImages->save();
+                
+
+                $update->save();
+                $update->images()->attach($newImages);
+            }
         }
+
+        // if($request->hasFile('coverImage')) {
+
+        //     $coverImage = $request->file('coverImage');
+        //     $renameImage = time().'.'.$coverImage->getClientOriginalExtension();
+
+        //     $location = public_path('images/'. $renameImage);
+
+        //     Image::make($coverImage)->resize(180, 130)->save($location);
+
+        //     //delete the old cover picture from the images storage
+        //     $oldImage = $update->cover_picture;
+        //     Storage::delete($oldImage);
+
+        //     $update->cover_picture = $renameImage;
+        // }
 
         $update->title          = $request->title;
         $update->category_id    = $request->category_id;
@@ -155,7 +196,7 @@ class ArticlesController extends Controller
 
             foreach ($images as $key => $file) {
 
-                //IMG_0230.jpg
+                //for example IMG_0230.jpg
                 $getOriginalName = $file->getClientOriginalName();
 
                 //IMG_0230

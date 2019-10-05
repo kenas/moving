@@ -10,14 +10,19 @@
 			<div class="col-md-8 pt-4">
 
 				<article>
-	
+			
 					<h1>{{$articles->title}}</h1>
-					<i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($articles->created_at))}} | {{$articles->created_at->diffForHumans()}}</small>
+					<i class="far fa-clock"></i> <small class="text-muted">
+						{{$articles->created_at->diffForHumans()}}
+						</small>
 
 					<div class="pt-3"></div>
 
 					@if($articles->images->count() > 1) 
-						<img src="{{asset('images/'.$articles->images->first()->path)}}" class="mr-3 img-fluid rounded float-left  w-100" alt="{{$articles->images->first()->title}}">
+						<picture>
+							<img src="{{asset('images/'.$articles->images->first()->path)}}" class="mr-3 img-fluid rounded float-left  w-100" alt="{{$articles->images->first()->title}}">
+							<div class="text-muted float-right">{{$articles->images->first()->title}}</div>
+						</picture>
 					@endif
 			
 					<div class="clearfix"></div>
@@ -25,6 +30,7 @@
 						
 					@foreach($articles->images->slice(1) as $img)
 						<img src="{{ asset('images/'. $img->path)}}" class="mr-3 img-fluid rounded float-left  w-100" alt="{{$img->title}}">
+					<div class="text-muted float-right">{{$img->title}}</div>
 					@endforeach
 					<div class="clearfix"></div>
 

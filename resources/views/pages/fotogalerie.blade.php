@@ -9,8 +9,8 @@
 		@foreach($all as $picture)
 			<div class="col-md-3">
 				<div class="card mb-3">
-					<a href="{{$picture->path}}" data-mediabox="my-gallery-name" data-title="{{$picture->description}}">
-						<img src="{{$picture->path}}" class="card-img-top" alt="...">
+					<a href="{{ asset('fotogalerie/'.$picture->path)}}" data-mediabox="my-gallery-name" data-title="{{$picture->description}}">
+						<img src="{{ asset('fotogalerie/thumbnail/'.$picture->path)}}" class="card-img-top" alt="...">
 					</a>
 					<div class="card-body">
 					<p class="card-text">{{$picture->description}}</p>

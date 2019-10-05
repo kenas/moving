@@ -12,6 +12,7 @@ class Article extends Model
     protected $dates = ['deleted_at'];
     protected $table = 'articles';
     //protected $fillable = ['cover_picture', 'title', 'slug', 'content', 'category_id', 'author', 'publish', 'created_at', 'updated_at'];
+    
     //Articles belogTo to category
     public function category()
     {

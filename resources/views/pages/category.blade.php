@@ -24,7 +24,7 @@
 							@if($article->images)
 								@foreach($article->images->slice(1) as $img)
 							
-									<img src="{{asset('images/'.$img->path)}}" class="mr-3 img-fluid rounded float-left" alt="{{$img->title}}">
+									<img src="{{asset('images/thumbnail/'.$img->path)}}" class="mr-3 img-fluid rounded float-left" alt="{{$img->title}}">
 									
 								@endforeach
 							@endif
