@@ -18,7 +18,7 @@
 
 					<div class="pt-3"></div>
 
-					@if($articles->images->count() > 1) 
+					@if($articles->images->count() >= 1) 
 						<picture>
 							<img src="{{asset('images/'.$articles->images->first()->path)}}" class="mr-3 img-fluid rounded float-left  w-100" alt="{{$articles->images->first()->title}}">
 							<div class="text-muted float-right">{{$articles->images->first()->title}}</div>
