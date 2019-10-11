@@ -18,20 +18,27 @@
 
 					<div class="pt-3"></div>
 
-					@if($articles->images->count() >= 1) 
-						<picture>
-							<img src="{{asset('images/'.$articles->images->first()->path)}}" class="mr-3 img-fluid rounded float-left  w-100" alt="{{$articles->images->first()->title}}">
-							<div class="text-muted float-right">{{$articles->images->first()->title}}</div>
-						</picture>
-					@endif
+					<div class="mx-auto  img-fluid" style="width: 500px;">
+
+						@if($articles->images->count() >= 1) 
+							<picture>
+								<img src="{{asset('images/'.$articles->images->first()->path)}}" class="mr-3 img-fluid rounded float-left  w-100" alt="{{$articles->images->first()->title}}">
+								<div class="text-muted float-right">{{$articles->images->first()->title}}</div>
+							</picture>
+						@endif
+
+					</div>
 			
 					<div class="clearfix"></div>
 					<p class="mt-4">{!! $articles->content !!}</p>
-						
-					@foreach($articles->images->slice(1) as $img)
-						<img src="{{ asset('images/'. $img->path)}}" class="mr-3 img-fluid rounded float-left  w-100" alt="{{$img->title}}">
-					<div class="text-muted float-right">{{$img->title}}</div>
-					@endforeach
+					
+					<div class="mx-auto img-fluid" style="width: 500px;">
+						@foreach($articles->images->slice(1) as $img)
+							<img src="{{ asset('images/'. $img->path)}}" class="mr-3 img-fluid rounded float-left  w-100" alt="{{$img->title}}">
+						<div class="text-muted float-right">{{$img->title}}</div>
+						@endforeach
+					</div>
+
 					<div class="clearfix"></div>
 
 					<nav aria-label="breadcrumb">

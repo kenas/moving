@@ -21,13 +21,17 @@
 						<article class="mb-5">
 							<h1><a href="{{ route('articles.show', ['kategorie' => strtolower($article->category->slug), 'clanek' => $article->slug])}}">{{$article->title}}</a></h1>
 
-							@if($article->images)
-								@foreach($article->images->slice(1) as $img)
-							
-									<img src="{{asset('images/thumbnail/'.$img->path)}}" class="mr-3 img-fluid rounded float-left" alt="{{$img->title}}">
-									
-								@endforeach
-							@endif
+							<div class="mx-auto  img-fluid" style="width: 500px;">
+								@if($article->images)
+
+									@foreach($article->images->take(1) as $img)
+									<picture>
+										<img src="{{asset('images/thumbnail/'.$img->path)}}" class="mr-3 img-fluid rounded float-left" alt="{{$img->title}}">
+									</picture>
+										
+									@endforeach
+								@endif
+							</div>
 							<div class="clearfix"></div>
 					<!-- 		<a href="{{route('category.index', strtolower($article->category->slug)) }}"><span class="badge badge badge-info">{{$article->category->name}}</span></a> -->
 							<!-- <i class="far fa-clock"></i> <small class="text-muted">{{date("d F Y, g:i a", strtotime($article->created_at))}} | {{$article->created_at->diffForHumans()}} | autor: {{$article->author}}</small> -->
