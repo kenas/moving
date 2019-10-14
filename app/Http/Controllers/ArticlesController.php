@@ -20,7 +20,7 @@ class ArticlesController extends Controller
 {
     public function __construct() {
 
-        $this->middleware('auth', ['only' => ['index', 'create', 'edit', 'update', 'store', 'delete']]);
+        $this->middleware('auth', ['only' => ['index', 'create', 'edit', 'update', 'store', 'destroy']]);
     }
 
     /**
@@ -261,14 +261,15 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        $deleteRecordByTrash = Article::find($id);
+
+        $deleteRecordByTrash = Article::findOrFail($id);
         $deleteRecordByTrash->tags()->detach();
         //delete the cover picture from the images storage
-        $pictureDeleteFromStorage = $deleteRecordByTrash->cover_picture;
-        Storage::delete($pictureDeleteFromStorage);
+        // $pictureDeleteFromStorage = $deleteRecordByTrash->cover_picture;
+        // Storage::delete($pictureDeleteFromStorage);
 
         //and update database with NULL because the article is still there (soft delete)
-        $deleteRecordByTrash->cover_picture = null;
+        //$deleteRecordByTrash->cover_picture = null;
         $deleteRecordByTrash->save();
         
         $deleteRecordByTrash->delete();

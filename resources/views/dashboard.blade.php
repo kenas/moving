@@ -88,7 +88,7 @@
 
                                 </td>
                                 <td>
-                                 {{--    <form action="{{ route('article.destroy', $article->id)}}" method="POST"> --}}
+                                 {{--    <form action="{{ route('articles.destroy', $article->id)}}" method="POST"> --}}
                                         {{-- @csrf --}}
                                  
                                         <button v-on:click="deleteArticle({{json_encode($article)}})" type="submit" class="button is-danger">Delete</button>
@@ -243,6 +243,7 @@
             }
           },
           deleteArticle: function(id) {
+            console.log(id.id);
             this.alertConfirmDelete = confirm('Are you sure that you want to remove the article? '+id.title+' ');
             
               if(this.alertConfirmDelete) {
@@ -264,7 +265,7 @@
               } else {
                 //do nothing
               }
-             this.refreshPage();
+             //this.refreshPage();
           },
           searchit: function() {
             if(this.search !== '') { 
