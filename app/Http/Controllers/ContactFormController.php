@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests\EmailRequestValidation;
+use App\Mail\newEmailNotofication;
+use App\Mail\NotoficationForSender;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\sendContactForm;
+use App\Http\Requests\EmailRequestValidation;
 
 class ContactFormController extends Controller
 {
@@ -19,7 +19,7 @@ class ContactFormController extends Controller
 
     public function sendEmail(EmailRequestValidation $request) {
 
-        //dd($request);
+        // dd($request);
         $data = [
             'subject' => $request->subject,
             'email' => $request->email,
@@ -27,9 +27,10 @@ class ContactFormController extends Controller
         ];
 
 
-        Mail::to('libor.gess11@gmail.com')->send(new sendContactForm($data));
+       Mail::to('libor.gess11@gmail.com')->send(new newEmailNotofication($data));
+       Mail::to($data['email'])->send(new NotoficationForSender($data));
 
-        return redirect()->back()->with('status', 'Na Váš dotaz bude odpovězeno, jakmile to bude možné. Přeji Vám hezký den.');
+       return redirect()->back()->with('status', 'Na Váš dotaz bude odpovězeno, jakmile to bude možné. Přeji Vám hezký den.');
     }
  
 }

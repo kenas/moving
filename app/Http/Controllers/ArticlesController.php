@@ -48,6 +48,12 @@ class ArticlesController extends Controller
         $tags = Tag::all();
 
         return view('manage.articles.create', compact('categories', 'tags'));
+
+
+        if($request->hasFile('images')) {
+
+            
+        }
     }
 
     /**
@@ -172,7 +178,7 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->coverImage);
+      
         $this->validate(request(), [
             'title'         => 'required|unique:articles|max:255',
             'category_id'   => 'required|numeric',
@@ -180,9 +186,11 @@ class ArticlesController extends Controller
             'content'       => 'required',
         ]);
 
+
         $newArticle = new Article;
 
         $newArticle->title         = $request->title;
+        $newArticle->cover_picture = $request->cover_picture;
         $newArticle->slug          = str_slug($request->title);
         $newArticle->category_id   = $request->category_id;
         $newArticle->author        = $request->author;
@@ -220,7 +228,7 @@ class ArticlesController extends Controller
           
                 $newImages = new Image;
                 $newImages->path =  strtolower($fileNameToStore);
-                $newImages->title = $request->title;
+                $newImages->title = $request->des_cover_picture;
                 $newImages->save();
                 
 

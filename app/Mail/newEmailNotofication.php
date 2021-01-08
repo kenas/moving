@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class sendContactForm extends Mailable
+class newEmailNotofication extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,7 +29,6 @@ class sendContactForm extends Mailable
      */
     public function build()
     {
-       return $this->markdown('pages.sendFormContact')->with($this->data);
-   
+        return $this->markdown('emails.email.newEmailNotofication')->with($this->data);
     }
 }

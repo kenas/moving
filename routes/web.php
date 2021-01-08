@@ -50,4 +50,3 @@ Route::get('/fotogalerie', 'FotogalerieController@show')->name('fotogalerie');
 Route::get('/tag/{tag}', 'TagController@index')->name('tag.index');
 Route::get('/kontakt', 'ContactFormController@getEmail')->name('getEmail');
 Route::post('/odeslat', 'ContactFormController@sendEmail')->name('sendEmail');
-

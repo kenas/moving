@@ -5,7 +5,7 @@
 		<link rel="next" href="{{$articles->nextPageUrl()}}">
 	@elseif($articles->previousPageUrl() && $articles->nextPageUrl() )
 		<link rel="prev" href="{{ $articles->previousPageUrl() }}">
-		<link rel="next" href="{{$articles->nextPageUrl()}}">
+		<link rel="next" href="{{ $articles->nextPageUrl()}}">
 	@elseif($articles->nextPageUrl() == null )
 		<link rel="prev" href="{{ $articles->previousPageUrl() }}">
 	@endif

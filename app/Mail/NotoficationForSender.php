@@ -7,11 +7,13 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class sendContactForm extends Mailable
+class NotoficationForSender extends Mailable
 {
+
     use Queueable, SerializesModels;
 
     public $data;
+
     /**
      * Create a new message instance.
      *
@@ -29,7 +31,6 @@ class sendContactForm extends Mailable
      */
     public function build()
     {
-       return $this->markdown('pages.sendFormContact')->with($this->data);
-   
+        return $this->markdown('emails.email.notoficationForSender')->with($this->data);
     }
 }
