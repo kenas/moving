@@ -20,8 +20,8 @@ import VueAxios from 'vue-axios';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('dashboard', require('./components/dashboard.vue'));
+// Vue.component('dashboard', require('./components/dashboard.vue'));
 
-const app = new Vue({
+// const app = new Vue({
     
-});
+// });

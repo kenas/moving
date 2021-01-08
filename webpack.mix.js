@@ -1,4 +1,5 @@
-import { js } from 'laravel-mix';
+
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +12,5 @@ import { js } from 'laravel-mix';
  |
  */
 
-js('resources/assets/js/app.js', 'public/js')
+mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css/');
